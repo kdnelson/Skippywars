@@ -1,19 +1,18 @@
 <header>
   <nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
+    <div class="container">
       <form class="d-flex input-group w-auto">
-        <div class="input-group-prepend mt-1">
-          <!-- TODO: Add route back to products -->
-          <strong class="navbar-brand" href="#">Skippy Wars</strong>
+        <div class="input-group-prepend" routerLink="products">
+          <div class="header-title mt-1" href="#">Skippy Wars</div>
         </div>
-        <input type="text" class="form-control" [(ngModel)]="searchTerm" (keyup)="search($event)" placeholder="Search Products">
+        <input type="text" class="form-control ms-3" [(ngModel)]="searchTerm" (keyup)="search($event)" placeholder="Search Products">
         <span class="input-group-text text-black border-0 search-btn bg-dark" id="search-addon">
         </span>
-        <!-- TODO: Add user login here -->
+        <!-- TODO: Add user login routerLink here -->
       </form>
       <div class="d-flex">
         <button routerLink="cart" class="btn btn-dark btn-sm">
-          <i style="font-size: 25px;" class="fas fa-cart-plus cart-btn"></i>
+          <i style="font-size: 25px;" class="fas fa-cart-plus"></i>
           <div style="font-size: 10px;" class="badge bg-danger">{{totalItem}}</div>
         </button>
       </div>
