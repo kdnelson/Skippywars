@@ -1,17 +1,15 @@
 <header>
-  <nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-dark">
     <div class="container">
       <form class="d-flex input-group w-auto">
         <div class="input-group-prepend" routerLink="products">
-          <div class="header-title mt-1" href="#">Skippy Wars</div>
+          <div class="header-title mt-1 header-background" href="#">Skippy Wars</div>
         </div>
-        <input type="text" class="form-control ms-3" [(ngModel)]="searchTerm" (keyup)="search($event)" placeholder="Search Products">
-        <span class="input-group-text text-black border-0 search-btn bg-dark" id="search-addon">
-        </span>
+        <input type="text" class="form-control ms-3 header-background" [(ngModel)]="searchTerm" (keyup)="search($event)" placeholder="Search Products">
         <!-- TODO: Add user login routerLink here -->
       </form>
       <div class="d-flex">
-        <button routerLink="cart" class="btn btn-dark btn-sm">
+        <button routerLink="cart" class="btn btn-dark btn-sm header-background">
           <i style="font-size: 25px;" class="fas fa-cart-plus"></i>
           <div style="font-size: 10px;" class="badge bg-danger">{{totalItem}}</div>
         </button>

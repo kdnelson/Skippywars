@@ -26,9 +26,15 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
-
 Original shopping cart:
 https://www.youtube.com/watch?v=855KrFfF9-w&list=PLuxS_TWA04F7539hy9rIoReOHv9iHtrZp&index=51
 
+TODO:
 
-
+Remove blue highlight on buttons and text fields
+Fix the header shifts left to right going from cart back to home
+The "Search Products" text could be a little darker
+Maybe blend the top with the bottom of the background image to hide a line
+Adjust, on phone media, to reduce product image size
+Pop a simple modal on cart image
+JS errors
