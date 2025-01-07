@@ -13,3 +13,20 @@
 .header-background {
 	background-color: transparent;
 }
+
+.header-input {
+	color: white;
+	background-color: #545454;
+	outline: none !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+
+.header-input:hover,
+.header-input:active,
+.header-input:focus {
+	background-color: #545454;
+	outline: none !important;
+	border: none !important;
+	box-shadow: none !important;
+}

@@ -8,8 +8,26 @@
   text-align: center;
   font-weight: bold;
   color: black;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.btn:hover,
+.btn:active,
+.btn:focus {
+  background: #F1E207;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .card {
   background-color: transparent;
+}
+
+.products {
+  max-height: 85vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

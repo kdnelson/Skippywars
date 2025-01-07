@@ -5,7 +5,7 @@
         <div class="input-group-prepend" routerLink="products">
           <div class="header-title mt-1 header-background" href="#">Skippy Wars</div>
         </div>
-        <input type="text" class="form-control ms-3 header-background" [(ngModel)]="searchTerm" (keyup)="search($event)" placeholder="Search Products">
+        <input type="text" class="form-control ms-3 header-input" [(ngModel)]="searchTerm" (keyup)="search($event)" placeholder="Search Products">
         <!-- TODO: Add user login routerLink here -->
       </form>
       <div class="d-flex">

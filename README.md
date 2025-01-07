@@ -31,10 +31,6 @@ https://www.youtube.com/watch?v=855KrFfF9-w&list=PLuxS_TWA04F7539hy9rIoReOHv9iHt
 
 TODO:
 
-Remove blue highlight on buttons and text fields
-Fix the header shifts left to right going from cart back to home
-The "Search Products" text could be a little darker
-Maybe blend the top with the bottom of the background image to hide a line
 Adjust, on phone media, to reduce product image size
 Pop a simple modal on cart image
 JS errors
