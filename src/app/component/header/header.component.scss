@@ -3,11 +3,12 @@
 	background-color: #212529;
 	font-weight: bold;
 	font-size: larger;
+	margin-right: .5rem;
 }
 
 .form-control {
 	border-radius: 3px;
-	width: 200px;
+	width: 142px;
 }
 
 .header-background {
@@ -26,6 +27,11 @@
 .header-input:active,
 .header-input:focus {
 	background-color: #545454;
+	outline: none !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+.btn {
 	outline: none !important;
 	border: none !important;
 	box-shadow: none !important;
