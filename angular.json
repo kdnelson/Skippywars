@@ -1,5 +1,5 @@
 {
-  "$schema": "../node_modules/@angular/cli/lib/config/schema.json",
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
     "analytics": "687bdf7e-0bd6-473d-be09-5c296eee934d"
   },
@@ -76,10 +76,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "skippywars:build:production"
+              "buildTarget": "skippywars:build:production"
             },
             "development": {
-              "browserTarget": "skippywars:build:development"
+              "buildTarget": "skippywars:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -87,7 +87,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "skippywars:build"
+            "buildTarget": "skippywars:build"
           }
         },
         "test": {
