@@ -2,6 +2,8 @@
 // @media screen and (max-width: 992px) {}
 // @media screen and (max-width: 576px) {}\
 
+@import "./custom-styles/ngx-smart-modal-custom.scss";
+
 .background {
   height: 100%;
   width: 100%;
@@ -9,6 +11,11 @@
   z-index: 2;
   background-size: cover;
   background-image: url("./assets/images/starwars-shady-bg.jpg");
+}
+
+.cart-modal-anchor {
+  position: absolute;
+  right: 17.5%;
 }
 
 ::-webkit-scrollbar {

@@ -1,3 +1,11 @@
+<!-- <form class="form-inline waves-light" style="width: 100%;" mdbRippleRadius>
+  <div class="header-title mt-2 header-background" href="#">Skippy Wars</div>
+  <input class="form-control mr-sm-2" style="width: 100%;" type="text" placeholder="Search">
+</form> -->
+
+<one-modal></one-modal>
+<div class="cart-modal-anchor"></div>
+
 <header>
   <nav class="navbar navbar-dark">
     <div class="container">
@@ -8,6 +16,7 @@
           </div>
           <input type="text" class="form-control header-input" [(ngModel)]="searchTerm" name="searchTerm" (keyup)="search($event)"
             placeholder="Search Products">
+            <button (click)="ngxSmartModalService.getModal('popupOne').open()">Open myModal 1</button>
           <!-- TODO: Add user login routerLink here -->
         </form>
       </div>
