@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NgxSmartModalService } from 'ngx-smart-modal';
-import { CartService } from '../../service/cart.service';
+import { CartModalComponent } from './../cart-modal/cart-modal.component';
+import { CartService } from '../../service/cart.service-old';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,8 @@ import { CartService } from '../../service/cart.service';
 })
 export class HeaderComponent implements AfterViewInit, OnInit {
   constructor(
-    private cartService : CartService,
+    private cartService: CartService,
+    private cartModalComponent: CartModalComponent,
     public ngxSmartModalService: NgxSmartModalService) {
   }
 
@@ -45,5 +47,19 @@ export class HeaderComponent implements AfterViewInit, OnInit {
     this.searchTerm = (event.target as HTMLInputElement).value;
     console.log(this.searchTerm);
     this.cartService.search.next(this.searchTerm);
+  }
+
+  openCartModal() {
+    let methodName: string = 'openCartModal';
+
+    try {
+      //this.closeAllModals();
+      //if(this.cartItemService.getCartCount() > 0){
+        this.cartModalComponent.loadModal();
+      //}
+    } catch (errMsg) {
+      // let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
+      // this.logService.logHandler(errorMsg);
+    }
   }
 }

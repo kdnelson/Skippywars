@@ -4,8 +4,9 @@ import { AppRoutingModule } from '../app/app-routing.module';
 import { AppComponent } from '../app/app.component';
 import { HeaderComponent } from './component/header/header.component';
 import { CartComponent } from './component/cart/cart.component';
+import { CartModalComponent } from './component/cart-modal/cart-modal.component';
+import { MenuItemModalComponent } from './component/menuItem-modal/menuItem-modal.component';
 import { ProductsComponent } from './component/products/products.component';
-import { OneModalComponent } from './component/cart-modal/one-modal.component';
 import { provideHttpClient } from '@angular/common/http';
 import { FilterPipe } from './shared/filter.pipe';
 import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
@@ -16,8 +17,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     HeaderComponent,
     CartComponent,
+    CartModalComponent,
+    MenuItemModalComponent,
     ProductsComponent,
-    OneModalComponent,
     FilterPipe
   ],
   imports: [

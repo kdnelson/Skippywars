@@ -1,0 +1,95 @@
+<ngx-smart-modal
+  #cart [identifier]="'cart'"
+  customClass="nsm-centered"
+  [closable]="false"
+  [dismissable]="true"
+  target=".cart-modal-anchor"
+  (onDismiss)="resetForm()"
+>
+  <div *ngIf="cart.hasData()">
+    <div class="cart-container">
+      <div class="container">
+        <div class="cart-header d-flex justify-content-between">
+          <div class="cart-number-label">{{ cart.getData().name }}</div>
+          <div class="cart-counter-label">{{ cart.getData().itemsCounter }}</div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="row card-container scroll">
+            <div *ngFor="let cartItem of cart.getData().cartItems">
+              <div *ngIf="!cartItem.isSelected" class="cart-card-not-selected" role="button"
+                (click)="selectedCartItem(cartItem, cart.getData())">
+                <div class="d-flex justify-content-between">
+                  <div class="cart-card-name-label">{{ cartItem.name }}</div>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div *ngIf="cartItem.menuItemOptionsCount > 0" class="cart-card-item-option-total-label">{{
+                    cartItem.menuItemOptionsCount }}</div>
+                  <div *ngIf="cartItem.menuItemOptionsCount == 0" class="cart-card-item-option-total-empty-label"></div>
+                  <div class="cart-card-item-total-label">{{ cartItem.totalPrice }}</div>
+                </div>
+              </div>
+              <div *ngIf="cartItem.isSelected" class="cart-card-selected" role="button"
+                (click)="selectedCartItem(cartItem, cart.getData())">
+                <div class="d-flex justify-content-between">
+                  <div class="cart-card-name-label">{{ cartItem.name }}</div>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div *ngIf="cartItem.menuItemOptionsCount > 0" class="cart-card-item-option-total-label">{{
+                    cartItem.menuItemOptionsCount }}</div>
+                  <div *ngIf="cartItem.menuItemOptionsCount == 0" class="cart-card-item-option-total-empty-label"></div>
+                  <div class="cart-card-item-total-label">{{ cartItem.totalPrice }}</div>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div class="cart-card-remove" role="button" (click)="removeCartItem(cartItem, cart.getData())">Remove
+                  </div>
+                  <div class="cart-card-cancel" role="button" (click)="cancelCartItem(cartItem, cart.getData())">Cancel
+                  </div>
+                  <div class="cart-card-edit" role="button" (click)="editCartItem(cartItem, cart.getData())">Edit</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- The cart item list needs always be a static height. -->
+            <div *ngIf="cart.getData().cartItems.length == 1">
+              <div class="cartItem-card-placeholder"></div>
+              <div class="cartItem-card-placeholder"></div>
+              <div class="cartItem-card-placeholder"></div>
+            </div>
+            <div *ngIf="cart.getData().cartItems.length == 2">
+              <div class="cartItem-card-placeholder"></div>
+              <div class="cartItem-card-placeholder"></div>
+            </div>
+            <div *ngIf="cart.getData().cartItems.length == 3">
+              <div class="cartItem-card-placeholder"></div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="row">
+            <div class="cart-card-totaler-label">
+              <div class="d-flex flex-column">
+                <div class="d-flex">
+                  <div class="p-2 flex-fill">Sub Total:</div>
+                  <div class="p-2 mr-auto">{{ cart.getData().subTotal }} cr</div>
+                </div>
+                <div class="d-flex">
+                  <div class="p-2 flex-fill">Tax:</div>
+                  <div class="p-2 mr-auto">{{ cart.getData().tax }} cr</div>
+                </div>
+                <div class="d-flex">
+                  <div class="p-2 flex-fill">Total:</div>
+                  <div class="p-2 mr-auto">{{ cart.getData().total }} cr</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="row">
+            <div class="cart-submit-btn" role="button" (click)="submitCart(cart.getData())">Submit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ngx-smart-modal>
