@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Cart } from '../../models/cart';
 import { Guid } from 'guid-typescript';
@@ -19,8 +19,16 @@ import { MenuItemDetail } from '../../models/menuItemDetail';
 })
 export class CartModalComponent {
   className: string = "CartModalComponent";
+  @Input() name: string | undefined;
+  @Input() itemsCounter: string | undefined;
+  @Input() cartItems: CartItem[] | undefined;
+  @Input() subTotal: number | undefined;
+  @Input() totalPrice: number | undefined;
+  @Input() tax: number | undefined;
+  @Input() total: number | undefined;
+
   subs = new Subscription();
-  cartItems$: CartItem[] | Observable<CartItem[]>;
+  //cartItems$: CartItem[] | Observable<CartItem[]>;
 
   constructor(
     private cartItemService: CartItemService,
@@ -40,14 +48,19 @@ export class CartModalComponent {
     }
   }
 
+  getModalData() {
+    return this.cartItemService.get() as Cart;
+  }
+
   loadModal() {
     let methodName: string = 'loadModal';
     this.closeAllModals();
 
     try {    
-      let cartItems: CartItem[];
-      this.cartItemService.get().subscribe(ci => cartItems = ci);
+      let cartItems: CartItem[] = [];
+      this.cartItemService.get().subscribe((ci: any) => cartItems = ci);
       let cart: Cart = this.createCart(cartItems);
+
       if(cart != null){
         this.ngxSmartModalService.setModalData(cart, 'cart', true);
         this.ngxSmartModalService.getModal('cart').open();
@@ -62,8 +75,8 @@ export class CartModalComponent {
     let methodName: string = 'refreshModal';
 
     try {    
-      let cartItems: CartItem[];
-      this.cartItemService.get().subscribe(ci => cartItems = ci);
+      let cartItems: CartItem[] = [];
+      this.cartItemService.get().subscribe((ci: any) => cartItems = ci);;
 
       cartItems.forEach(cartItem => {
         if(cartItem.id == selectedCartId){
@@ -71,11 +84,13 @@ export class CartModalComponent {
         }
       });
 
-      let updateCart: Cart = this.updateCart(cartItems, cart);
-      if(updateCart != null && updateCart.cartItems.length > 0){
-        this.ngxSmartModalService.setModalData(updateCart, 'cart', true);
-      } else {
-        this.closeAllModals();
+      let updateCart: Cart = this.updateCart(cartItems);
+      if(updateCart.cartItems !== undefined) {
+        if(updateCart.cartItems.length > 0){
+          this.ngxSmartModalService.setModalData(updateCart, 'cart', true);
+        } else {
+          this.closeAllModals();
+        }
       }
     } catch(errMsg){
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
@@ -83,10 +98,13 @@ export class CartModalComponent {
     }
   }
 
-  submitCart(cart: Cart) {
+  submitCart() {
     let methodName: string = 'submitCart';
 
     try {
+      // TODO: sent to checkout to then confirm order
+      let cart = this.getModalData();
+      console.log(cart);
       this.closeAllModals();
     } catch (errMsg) {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
@@ -110,7 +128,7 @@ export class CartModalComponent {
   private createCart(cartItems: CartItem[]) : Cart {
     let methodName: string = 'createCart';
   
-    let cart: Cart = null;
+    let cart: Cart = {};
     
     try {
       if(cartItems !== null) {
@@ -122,8 +140,7 @@ export class CartModalComponent {
         cart.cartItems = cartItems;
         cart.subTotal = this.cartItemService.getCartSubtotal();
         cart.tax = this.cartItemService.getCartTax(cart.subTotal);
-        cart.total = cart.subTotal + cart.tax;
-        return cart;
+        cart.total = cart.subTotal + cart.tax; 
       } else {
         let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.nullMethodParam, 'cartItems');
         this.logService.logHandler(errorMsg);
@@ -132,12 +149,15 @@ export class CartModalComponent {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
       this.logService.logHandler(errorMsg);
     }
+    return cart;
   }
 
-  private updateCart(cartItems: CartItem[], cart: Cart) : Cart {
+  private updateCart(cartItems: CartItem[]) : Cart {
     let methodName: string = 'updateCart';
-    
+    let cart: Cart = {};
+
     try {
+      cart = this.getModalData();
       if(cart !== null) {
         cart.itemsCounter = this.cartItemService.getCartCount();
         cart.name = cart.name;
@@ -146,7 +166,6 @@ export class CartModalComponent {
         cart.subTotal = this.cartItemService.getCartSubtotal();
         cart.tax = this.cartItemService.getCartTax(cart.subTotal);
         cart.total = cart.subTotal + cart.tax;
-        return cart;
       } else {
         let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.nullMethodParam, 'cartItems');
         this.logService.logHandler(errorMsg);
@@ -155,14 +174,16 @@ export class CartModalComponent {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
       this.logService.logHandler(errorMsg);
     }
+    return cart;
   }
 
-  selectedCartItem(cartItem: CartItem, cart: Cart) {
+  selectedCartItem(cartItem: CartItem) {
     let methodName: string = 'selectedCartItem';
 
     try {
+      let cart = this.getModalData();
       if(CartItem !== null && cart !== null) {
-        if(cart.cartItems !== null) {
+        if(cart.cartItems !== undefined) {
           cart.cartItems.forEach((item, index) => {
             if(item.id === cartItem.id){
               item.isSelected = true;
@@ -184,12 +205,13 @@ export class CartModalComponent {
     }
   }
 
-  cancelCartItem(cartItem: CartItem, cart: Cart) {
+  cancelCartItem(cartItem: CartItem) {
     let methodName: string = 'cancelCartItem';
     
     try {
+      let cart = this.getModalData();
       if(cartItem !== null && cart !== null) {
-        if(cart.cartItems !== null) {
+        if(cart.cartItems !== undefined) {
           cart.cartItems.forEach((item) => {
             if(item.id === cartItem.id){
               item.isSelected = false;
@@ -209,18 +231,23 @@ export class CartModalComponent {
     }
   }
 
-  removeCartItem(cartItem: CartItem, cart: Cart) {
+  removeCartItem(cartItem: CartItem) {
     let methodName: string = 'removeCartItem';
     
     try {
+      let cart = this.getModalData();
       if(cartItem !== null && cart !== null) {
-        if(cart.cartItems !== null) {
+        if(cart.cartItems !== undefined) {
           cart.cartItems.forEach((cItem) => {
-            if(cartItem.id === cItem.id){
-              cItem.isSelected = false;
-              this.cartItemService.decrementCartItemCount(cItem);
-              this.refreshModal(cItem.id, cart);
+            if(cItem.id !== undefined) {
+              if(cartItem.id === cItem.id){
+                cItem.isSelected = false;
+                this.cartItemService.decrementCartItemCount(cItem);
+                this.refreshModal(cItem.id, cart);
+              }
             }
+
+  
           });
         } else {
           let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.nullException, this.errorType.nullMethodParam);
@@ -246,7 +273,7 @@ export class CartModalComponent {
         this.menuItemModalComponent.editMenuItemDetail(editMenuItemDetail);
       }
       else {
-        let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.nullException, errMsg);
+        let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.nullException);
         this.logService.logHandler(errorMsg);
       }
     } catch (errMsg) {

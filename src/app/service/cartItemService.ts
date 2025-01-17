@@ -25,27 +25,11 @@ export class CartItemService extends ObservableStore<StoreState> {
       this.init();
   }
  
-  init() {
-    let methodName: string = 'init';
+  init() {}
  
-    try {    
-     
-    } catch (errMsg) {
-      let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
-      this.logService.logHandler(errorMsg);
-    }
-  }
- 
-  get() {
-    let methodName: string = 'get';
- 
-    try {    
-      const cartItems = this.getState().cartItems;
-      return of(cartItems);
-    } catch (errMsg) {
-      let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
-      this.logService.logHandler(errorMsg);
-    }
+  get() {   
+    const cartItems = this.getState().cartItems;
+    return of(cartItems);
   }
   
   add(cartItem: CartItem) {
@@ -54,15 +38,19 @@ export class CartItemService extends ObservableStore<StoreState> {
  
     try {
       let state = this.getState();
-      itemIndex = state.cartItems.findIndex(cItem => cItem.id == cartItem.id);
-      cartItem.menuItemOptionsCount = this.getMenuItemOptionsCount(cartItem);
-      if(itemIndex == -1) {  //  Add new cartItem
-        cartItem = this.modCartItemName(cartItem);
-        state.cartItems.push(cartItem);
-        this.setState({ cartItems: state.cartItems }, StoreActions.AddCartItem);
-      } else {  //  Update cartItem
-        state.cartItems[itemIndex] = cartItem;
-        this.setState({ cartItems: state.cartItems }, StoreActions.UpdateCartItem);
+      if(state.cartItems?.findIndex(cItem => cItem.id == cartItem.id) !== undefined) {
+        itemIndex = state.cartItems?.findIndex(cItem => cItem.id == cartItem.id);
+        cartItem.menuItemOptionsCount = this.getMenuItemOptionsCount(cartItem);
+        if (itemIndex == -1) {
+          cartItem = this.modCartItemName(cartItem);
+          state.cartItems?.push(cartItem);
+          this.setState({ cartItems: state.cartItems }, StoreActions.AddCartItem);
+        } else {
+          if(state.cartItems !== undefined) {
+            state.cartItems[itemIndex] = cartItem;
+            this.setState({ cartItems: state.cartItems }, StoreActions.UpdateCartItem);
+          }
+        }
       }
     } catch (errMsg) {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
@@ -77,7 +65,7 @@ export class CartItemService extends ObservableStore<StoreState> {
 
     try {              
       let state = this.getState();
-      state.cartItems.splice(cartItemIndex, 1);
+      state.cartItems?.splice(cartItemIndex, 1);
       this.setState({ cartItems: state.cartItems }, StoreActions.RemoveCartItem);
     } catch (errMsg) {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
@@ -93,13 +81,15 @@ export class CartItemService extends ObservableStore<StoreState> {
  
     try {
       let state = this.getState();
-      state.cartItems.forEach((cItem) => {
+      state.cartItems?.forEach((cItem) => {
         if(cartItem.id === cItem.id){
-          if(cItem.quantity == 1){
-            this.remove(cartItemIndex);
-          } else {
-            cItem.quantity = cItem.quantity - 1;
-            this.setState({ cartItems: state.cartItems }, StoreActions.UpdateCartItem); 
+          if(cItem.quantity !== undefined){
+            if(cItem.quantity == 1){
+              this.remove(cartItemIndex);
+            } else {
+              cItem.quantity = cItem.quantity - 1;
+              this.setState({ cartItems: state.cartItems }, StoreActions.UpdateCartItem); 
+            }
           }
         }
         cartItemIndex++;
@@ -117,10 +107,12 @@ export class CartItemService extends ObservableStore<StoreState> {
     let cartCounter = 0;
 
     try {    
-        let state = this.getState();
-        state.cartItems.forEach((cartItem) => {
-            cartCounter = cartCounter + cartItem.quantity;
-        })
+      let state = this.getState();
+      state.cartItems?.forEach((cartItem) => {
+        if(cartItem.quantity !== undefined) {
+          cartCounter = cartCounter + cartItem.quantity;
+        }
+      })
     } catch (errMsg) {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
       this.logService.logHandler(errorMsg);
@@ -134,10 +126,12 @@ export class CartItemService extends ObservableStore<StoreState> {
     let cartSubtotal: number = 0;
 
     try {    
-        let state = this.getState();
-        state.cartItems.forEach((cartItem) => {
-            cartSubtotal += parseInt(cartItem.totalPrice.toString());
-        })
+      let state = this.getState();
+      state.cartItems?.forEach((cartItem) => {
+        if (cartItem.totalPrice !== undefined) {
+          cartSubtotal += parseInt(cartItem.totalPrice.toString());
+        }
+      })
     } catch (errMsg) {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
       this.logService.logHandler(errorMsg);
@@ -166,10 +160,12 @@ export class CartItemService extends ObservableStore<StoreState> {
   private modCartItemName(cartItem: CartItem) : CartItem {
     let methodName: string = 'modCartItemName';
 
-    try {    
-      if (cartItem.name.length > 23) {
-        cartItem.name = cartItem.name.substring(0, 22) + "...";
-      }
+    try {  
+      if(cartItem.name !== undefined){
+        if (cartItem.name.length > 23) {
+          cartItem.name = cartItem.name.substring(0, 22) + "...";
+        }
+      } 
     } catch (errMsg) {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
       this.logService.logHandler(errorMsg);
@@ -183,7 +179,7 @@ export class CartItemService extends ObservableStore<StoreState> {
     let menuItemOptionsCount: number = 0;
 
     try {
-      cartItem.menuItemOptions.forEach(miOption => {
+      cartItem.menuItemOptions?.forEach(miOption => {
         if(miOption.isSelected){
           menuItemOptionsCount++;
         }

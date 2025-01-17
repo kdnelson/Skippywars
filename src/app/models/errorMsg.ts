@@ -3,7 +3,7 @@ export class ErrorMsg {
       public className?: string,
       public methodName?: string,
       public errorType?: string,
-      public errorMessage?: string,
+      public errorMessage?: unknown,
       public title?: string,
       public message?: string,
     ) { }

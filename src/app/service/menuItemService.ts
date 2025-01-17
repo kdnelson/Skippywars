@@ -9,18 +9,19 @@ import { MenuItem } from "../models/menuItem";
 import { StoreActions } from "../models/storeActions";
 import { StoreState } from "../models/storeState";
 import { LogService } from "./log.service";
+import { CartItem } from "../models/cartItem";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuItemService extends ObservableStore<StoreState> {
   className: string = "MenuItemService";
-  private initialState = {
-    cartItem: null,
+  private initialState: Partial<StoreState> = {
+    cartItem: {},
     cartItems: [],
-    filter: null,
+    filter: {},
     filters: [],
-    menuItem: null,
+    menuItem: {},
     menuItems: []
   }
   private vehiclesUrl = 'https://swapi.dev/api/vehicles/';
@@ -40,7 +41,7 @@ export class MenuItemService extends ObservableStore<StoreState> {
   init() {
     let methodName: string = 'init';
  
-    try {    
+    try {
       this.setState(this.initialState, StoreActions.InitializeState);
     } catch (errMsg) {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
@@ -50,23 +51,26 @@ export class MenuItemService extends ObservableStore<StoreState> {
  
   get() {
     let methodName: string = 'get';
+    let menuItems;
  
-    try {    
-      const menuItems = this.getState().menuItems;
-      if (menuItems.length > 0) {
-        console.log('Returning menuItems from store...');
-        return of(menuItems);
+    try {
+      menuItems = this.getState().menuItems;
+      if(menuItems !== undefined) {
+        if (menuItems.length > 0) {
+          console.log('Returning menuItems from store...');
+        }
       }
       else {
         console.log('Calling menuItems from SWAPI...');
         this.fetchMenuItems();
         const menuItems = this.getState().menuItems;
-        return of(menuItems);
       }
     } catch (errMsg) {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
       this.logService.logHandler(errorMsg);
     }
+
+    return of(menuItems);
   }
   
   add(menuItem: MenuItem) {
@@ -76,7 +80,7 @@ export class MenuItemService extends ObservableStore<StoreState> {
       let state = this.getState();
       menuItem = this.setCostFilters(menuItem);
       menuItem = this.setCrewFilters(menuItem);
-      state.menuItems.push(menuItem);
+      state.menuItems?.push(menuItem);
       this.setState({ menuItems: state.menuItems }, StoreActions.AddMenuItem);       
     } catch (errMsg) {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
@@ -91,7 +95,7 @@ export class MenuItemService extends ObservableStore<StoreState> {
  
     try {    
       let state = this.getState();
-      state.menuItems.splice(state.menuItems.length - 1, 1);
+      state.menuItems?.splice(state.menuItems.length - 1, 1);
       this.setState({ menuItems: state.menuItems }, StoreActions.RemoveMenuItem);
     } catch (errMsg) {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
@@ -114,12 +118,12 @@ export class MenuItemService extends ObservableStore<StoreState> {
       else if(Number(menuItem.cost) > 10000) {
         menuItem.costRange = 'MAXCOST';
       }
-
-      return menuItem;      
     } catch (errMsg) {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
       this.logService.logHandler(errorMsg);
     }
+
+    return menuItem;  
   }
 
   setCrewFilters(menuItem: MenuItem) : MenuItem {
@@ -134,13 +138,13 @@ export class MenuItemService extends ObservableStore<StoreState> {
       }
       else if(Number(menuItem.crew) > 1000) {
         menuItem.crewRange = 'MAXCREW';
-      }
-
-      return menuItem;      
+      }   
     } catch (errMsg) {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
       this.logService.logHandler(errorMsg);
     }
+
+    return menuItem; 
   }
 
   fetchMenuItems() {
@@ -157,15 +161,16 @@ export class MenuItemService extends ObservableStore<StoreState> {
     }
   }
  
-  getPagedVehicles = (url) : Promise<MenuItem[]> => {
+  getPagedVehicles = (url: string | URL | Request) : Promise<MenuItem[]> => {
     let methodName: string = 'getPagedVehicles';
     let response = null;
+    let errorMsg = null;
 
     return new Promise(async (resolve) => {   
       response = await fetch(url);
       if(response !== null){
         let data = await response.json();
-        data.results.forEach(element => {
+        data.results.forEach((element: any) => {
           let newMenuItem = this.createMenuItem(element);
           this.add(newMenuItem);
         });
@@ -176,13 +181,13 @@ export class MenuItemService extends ObservableStore<StoreState> {
           return resolve(this.initialState.menuItems);
         }
       } else {
-        let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.nullResponse);
+        errorMsg = new ErrorMsg(this.className, methodName, this.errorType.nullResponse);
         this.logService.logHandler(errorMsg);
       }
     })
   }
   
-  getPagedStarShips = (url): Promise<MenuItem[]> => {
+  getPagedStarShips = (url: string | URL | Request): Promise<MenuItem[]> => {
     let methodName: string = 'getPagedStarShips';
     let response = null;
 
@@ -190,7 +195,7 @@ export class MenuItemService extends ObservableStore<StoreState> {
       response = await fetch(url)
       if(response !== null){
         let data = await response.json();
-        data.results.forEach(element => {
+        data.results.forEach((element: any) => {
           let newMenuItem = this.createMenuItem(element);
           this.add(newMenuItem);
         });
@@ -209,7 +214,7 @@ export class MenuItemService extends ObservableStore<StoreState> {
   
   createMenuItem(rawMenuItem: any) : MenuItem {
     let methodName: string = 'createMenuItem';
-    var result: MenuItem = null;
+    var result: MenuItem = {};
   
     try {   
       result = new MenuItem(

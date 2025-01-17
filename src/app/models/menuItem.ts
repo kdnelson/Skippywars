@@ -5,7 +5,7 @@ export class MenuItem {
     public id?: string,
     public name?: String,
     public manufacturer?: String,
-    public cost?: String,
+    public cost?: number,
     public length?: String,
     public speed?: String,
     public crew?: String,

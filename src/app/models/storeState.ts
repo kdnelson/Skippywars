@@ -4,11 +4,11 @@ import { Filter } from "./filter";
 import { MenuItem } from "./menuItem";
 
 export class StoreState {
-  filter: Filter;
-  filters: Filter[];
-  menuItem: MenuItem;
-  menuItems: MenuItem[];
-  cart: Cart;
-  cartItem: CartItem;
-  cartItems: CartItem[];
+  filter: Filter | undefined;
+  filters: Filter[] | undefined;
+  menuItem: MenuItem | undefined;
+  menuItems: any;
+  cart: Cart | undefined;
+  cartItem: CartItem | undefined;
+  cartItems: CartItem[] | undefined;
 }

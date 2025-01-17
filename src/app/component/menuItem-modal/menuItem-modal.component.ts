@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Guid } from 'guid-typescript';
-import { NgxSmartModalService } from 'ngx-smart-modal';
+import { NgxSmartModalComponent, NgxSmartModalService } from 'ngx-smart-modal';
 import { CartItem } from '../../models/cartItem';
 import { ErrorMsg } from '../../models/errorMsg';
 import { ErrorType } from '../../models/errorType';
@@ -19,6 +19,11 @@ import { LogService } from '../../service/log.service';
 })
 export class MenuItemModalComponent implements OnInit {
   className: string = "MenuItemModalComponent";
+
+  @Input() menuItemDetail: MenuItemDetail | undefined;
+  @Input() menuItemOptions: MenuItemOption[] | undefined;
+  @Input() name: String | undefined;
+  @Input() totalCost: Number | undefined;
 
   constructor(
     public ngxSmartModalService: NgxSmartModalService,
@@ -46,6 +51,10 @@ export class MenuItemModalComponent implements OnInit {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
       this.logService.logHandler(errorMsg);
     }
+  }
+
+  getModalData() {
+    return this.cartItemService.get() as MenuItemDetail;
   }
 
   loadModal(menuItem: MenuItem) {
@@ -87,7 +96,7 @@ export class MenuItemModalComponent implements OnInit {
     try {
       this.closeAllModals();
       
-      if(menuItemDetail !== null){
+      if(menuItemDetail.menuItemOptions !== undefined){
         if(menuItemDetail.menuItemOptions.length > 0)
         {
           this.ngxSmartModalService.setModalData(menuItemDetail, 'menuItemDetail', true);
@@ -106,10 +115,11 @@ export class MenuItemModalComponent implements OnInit {
     }
   }
 
-  addMenuItemForCart(menuItemDetail: MenuItemDetail) : void {
+  addMenuItemForCart() : void {
     let methodName: string = 'addMenuItemForCart';
 
     try {
+      let menuItemDetail = this.getModalData();
       let newCartItem = this.createCartItemFromMenuItem(menuItemDetail);
       if(newCartItem !== null){
         this.cartItemService.add(newCartItem);
@@ -124,21 +134,22 @@ export class MenuItemModalComponent implements OnInit {
     }
   }
 
-  selectedOption(menuItemOption: MenuItemOption, menuItemDetail: MenuItemDetail) {
+  selectedOption(menuItemOption: MenuItemOption) {
     let methodName: string = 'selectedOption';
 
     try {
+      let menuItemDetail = this.getModalData();
       if(menuItemOption !== null && menuItemDetail !== null) {
-        if(menuItemDetail.menuItemOptions !== null) {
+        if(menuItemOption.name !== undefined && menuItemDetail.menuItemOptions !== undefined) {
           let optionIndex: number = this.searchOptionIndex(menuItemOption.name, menuItemDetail.menuItemOptions)
           if(menuItemOption.isSelected){
             menuItemOption.isSelected = false;
           } else {
             menuItemOption.isSelected = true;
           }
-          menuItemDetail.menuItemOptions.splice(optionIndex, 1, menuItemOption);
+          menuItemDetail.menuItemOptions?.splice(optionIndex, 1, menuItemOption);
           menuItemDetail.totalCost = menuItemDetail.cost;
-          menuItemDetail.totalCost = this.updateMenuItemOptionsCost(menuItemDetail).toString()
+          menuItemDetail.totalCost = parseInt(this.updateMenuItemOptionsCost(menuItemDetail).toString())
         } else {
           let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.nullException, 'menuItemOptions');
           this.logService.logHandler(errorMsg);
@@ -166,10 +177,9 @@ export class MenuItemModalComponent implements OnInit {
 
   private createCartItemFromMenuItem(menuItemDetail: MenuItemDetail) : CartItem {
     let methodName: string = 'createCartItemFromMenuItem';
-    let newCartItem = null;
+    let newCartItem = new CartItem();
 
     try {
-      newCartItem = new CartItem();
       newCartItem.id = menuItemDetail.id;
       newCartItem.name = menuItemDetail.name;
       newCartItem.quantity = 1;
@@ -187,20 +197,24 @@ export class MenuItemModalComponent implements OnInit {
 
   private updateMenuItemOptionsCost(menuItemDetail: MenuItemDetail) : number {
     let methodName: string = 'updateMenuItemOptionsCost';
+    let totalCost: number = 0;
     let menuItemDetailOptionsCost: number = 0;
 
     try {
-      menuItemDetail.menuItemOptions.forEach(miOption => {
-        if(miOption.isSelected){
-          menuItemDetailOptionsCost += parseInt(miOption.cost.toString())
-        }
-      });
+      if(menuItemDetail.cost !== undefined) {
+        menuItemDetail.menuItemOptions?.forEach(miOption => {
+          if(miOption.isSelected && miOption.cost !== undefined){
+            menuItemDetailOptionsCost += parseInt(miOption.cost.toString())
+          }
+        });
+        totalCost = menuItemDetail.cost + menuItemDetailOptionsCost;
+      }
     } catch (errMsg) {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
       this.logService.logHandler(errorMsg);
     }
 
-    return parseInt(menuItemDetail.cost.toString()) + menuItemDetailOptionsCost;
+    return totalCost;
   }
 
   private closeAllModals() : void {
@@ -243,7 +257,7 @@ export class MenuItemModalComponent implements OnInit {
   private createMenuItemDetail(menuItem: MenuItem, menuItemOptions: MenuItemOption[]) : MenuItemDetail {
     let methodName: string = 'createMenuItemDetail';
   
-    let menuItemDetail: MenuItemDetail = null;
+    let menuItemDetail: MenuItemDetail = {};
 
     try {
       if(menuItemOptions !== null) {
@@ -253,7 +267,6 @@ export class MenuItemModalComponent implements OnInit {
         menuItemDetail.cost = menuItem.cost;
         menuItemDetail.totalCost = menuItem.cost;
         menuItemDetail.menuItemOptions = menuItemOptions;
-        return menuItemDetail;
       } else {
         let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.nullException, this.errorType.nullMethodParam);
         this.logService.logHandler(errorMsg);
@@ -262,6 +275,8 @@ export class MenuItemModalComponent implements OnInit {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
       this.logService.logHandler(errorMsg);
     }
+
+    return menuItemDetail;
   }
 
   private getMenuItemOptions() : MenuItemOption[] {

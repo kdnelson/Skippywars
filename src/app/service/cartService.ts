@@ -13,7 +13,6 @@ import { LogService } from "./log.service";
 })
 export class CartService extends ObservableStore<StoreState> {
   className: string = "CategoryFilterService";
-  cart: Cart;
 
   constructor(
     public errorType: ErrorType,
@@ -68,7 +67,6 @@ export class CartService extends ObservableStore<StoreState> {
  
     try {    
       let state = this.getState();
-      state.cart = null;
       this.setState({ cart: state.cart }, StoreActions.RemoveCart);
     } catch (errMsg) {
       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
