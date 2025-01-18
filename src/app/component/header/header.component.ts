@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgxSmartModalService } from 'ngx-smart-modal';
-// import { CartModalComponent } from './../cart-modal/cart-modal.component';
 import { CartService } from '../../service/cart.service';
 
 @Component({
@@ -23,24 +22,6 @@ export class HeaderComponent implements OnInit {
       this.totalItem = res.length;
     })
   }
-
-  // ngAfterViewInit() {
-  //   const pen: Object = {
-  //     prop1: 'test',
-  //     prop2: true,
-  //     prop3: [{ a: 'a', b: 'b' }, { c: 'c', d: 'd' }],
-  //     prop4: 327652175423
-  //   };
-  //   this.ngxSmartModalService.setModalData(pen, 'popupOne');
-
-  //   const book: Object = {
-  //     prop1: 'test',
-  //     prop2: true,
-  //     prop3: [{ a: 'a', b: 'b' }, { c: 'c', d: 'd' }],
-  //     prop4: 327652175423
-  //   };
-  //   this.ngxSmartModalService.setModalData(book, 'popuptwo');
-  // }
 
   search(event:any){
     this.searchTerm = (event.target as HTMLInputElement).value;
