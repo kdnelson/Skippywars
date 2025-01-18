@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, VERSION, OnInit } from '@angular/core';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { CartService } from '../../service/cart.service';
 
@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
   public totalItem : number = 0;
   public searchTerm !: string;
+  name = 'Angular ' + VERSION.major;
 
   ngOnInit(): void {
     this.cartService.getProducts()
@@ -27,19 +28,5 @@ export class HeaderComponent implements OnInit {
     this.searchTerm = (event.target as HTMLInputElement).value;
     console.log(this.searchTerm);
     this.cartService.search.next(this.searchTerm);
-  }
-
-  openCartModal() {
-    let methodName: string = 'openCartModal';
-
-    try {
-      //this.closeAllModals();
-      //if(this.cartItemService.getCartCount() > 0){
-        //this.cartModalComponent.loadModal();
-      //}
-    } catch (errMsg) {
-      // let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
-      // this.logService.logHandler(errorMsg);
-    }
   }
 }

@@ -3,6 +3,15 @@
   <input class="form-control mr-sm-2" style="width: 100%;" type="text" placeholder="Search">
 </form> -->
 
+<ngx-smart-modal #myModal identifier="myModal">
+  <h1>Hello, I'm back on track!</h1>
+  <p>I'm a modal containing simple content, but what you see below is a component!</p>
+  <hr>
+  <CartModal name="{{ name }}"></CartModal>
+
+  <button (click)="myModal.close()">Close</button>
+</ngx-smart-modal>
+
 <header>
   <nav class="navbar navbar-dark">
     <div class="container">
@@ -13,7 +22,7 @@
           </div>
           <input type="text" class="form-control header-input" [(ngModel)]="searchTerm" name="searchTerm" (keyup)="search($event)"
             placeholder="Search Products">
-            <button (click)="ngxSmartModalService.getModal('popupOne').open()">Open myModal 1</button>
+            <button (click)="myModal.open()">Cart Modal</button>
           <!-- TODO: Add user login routerLink here -->
         </form>
       </div>
