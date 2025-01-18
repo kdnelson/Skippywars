@@ -3,7 +3,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { Cart } from '../../models/cart';
 import { Guid } from 'guid-typescript';
 import { CartItem } from '../../models/cartItem';
-import { MenuItemModalComponent } from '../menuItem-modal/menuItem-modal.component';
+//import { MenuItemModalComponent } from '../menuItem-modal/menuItem-modal.component';
 import { ErrorType } from '../../models/errorType';
 import { LogService } from '../../service/log.service';
 import { ErrorMsg } from '../../models/errorMsg';
@@ -33,7 +33,7 @@ export class CartModalComponent {
   constructor(
     private cartItemService: CartItemService,
     public ngxSmartModalService: NgxSmartModalService,
-    public menuItemModalComponent: MenuItemModalComponent,
+    //public menuItemModalComponent: MenuItemModalComponent,
     public errorType: ErrorType,
     public logService: LogService
   ) { }
@@ -270,7 +270,7 @@ export class CartModalComponent {
       this.closeAllModals();
       let editMenuItemDetail = this.createMenuItemDetailfromCartItem(cartItem);
       if(editMenuItemDetail !== null) {
-        this.menuItemModalComponent.editMenuItemDetail(editMenuItemDetail);
+        // this.menuItemModalComponent.editMenuItemDetail(editMenuItemDetail);
       }
       else {
         let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.nullException);

@@ -1,17 +1,16 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NgxSmartModalService } from 'ngx-smart-modal';
-import { CartModalComponent } from './../cart-modal/cart-modal.component';
-import { CartService } from '../../service/cart.service-old';
+// import { CartModalComponent } from './../cart-modal/cart-modal.component';
+import { CartService } from '../../service/cart.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements AfterViewInit, OnInit {
+export class HeaderComponent implements OnInit {
   constructor(
     private cartService: CartService,
-    private cartModalComponent: CartModalComponent,
     public ngxSmartModalService: NgxSmartModalService) {
   }
 
@@ -25,23 +24,23 @@ export class HeaderComponent implements AfterViewInit, OnInit {
     })
   }
 
-  ngAfterViewInit() {
-    const pen: Object = {
-      prop1: 'test',
-      prop2: true,
-      prop3: [{ a: 'a', b: 'b' }, { c: 'c', d: 'd' }],
-      prop4: 327652175423
-    };
-    this.ngxSmartModalService.setModalData(pen, 'popupOne');
+  // ngAfterViewInit() {
+  //   const pen: Object = {
+  //     prop1: 'test',
+  //     prop2: true,
+  //     prop3: [{ a: 'a', b: 'b' }, { c: 'c', d: 'd' }],
+  //     prop4: 327652175423
+  //   };
+  //   this.ngxSmartModalService.setModalData(pen, 'popupOne');
 
-    const book: Object = {
-      prop1: 'test',
-      prop2: true,
-      prop3: [{ a: 'a', b: 'b' }, { c: 'c', d: 'd' }],
-      prop4: 327652175423
-    };
-    this.ngxSmartModalService.setModalData(book, 'popuptwo');
-  }
+  //   const book: Object = {
+  //     prop1: 'test',
+  //     prop2: true,
+  //     prop3: [{ a: 'a', b: 'b' }, { c: 'c', d: 'd' }],
+  //     prop4: 327652175423
+  //   };
+  //   this.ngxSmartModalService.setModalData(book, 'popuptwo');
+  // }
 
   search(event:any){
     this.searchTerm = (event.target as HTMLInputElement).value;
@@ -55,7 +54,7 @@ export class HeaderComponent implements AfterViewInit, OnInit {
     try {
       //this.closeAllModals();
       //if(this.cartItemService.getCartCount() > 0){
-        this.cartModalComponent.loadModal();
+        //this.cartModalComponent.loadModal();
       //}
     } catch (errMsg) {
       // let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
