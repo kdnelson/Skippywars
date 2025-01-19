@@ -4,8 +4,8 @@
 </form> -->
 
 <ngx-smart-modal #cart [identifier]="'cart'">
-  <cart-modal></cart-modal>
-  <button (click)="cart.close()">Close</button>
+  <cart-modal name="{{ name }}"></cart-modal>
+  <button (click)="this.updateCartModal()">Append number</button>
 </ngx-smart-modal>
 
 <header>

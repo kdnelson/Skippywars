@@ -1,14 +1,13 @@
-import { Component, VERSION, OnInit } from '@angular/core';
+import { Component, VERSION, OnInit, Input } from '@angular/core';
 import { CartService } from '../../service/cart.service';
-import { CartModalComponent } from '../cart-modal/cart-modal.component';
 import { NgxSmartModalService } from 'ngx-smart-modal';
-import { Cart } from '../../models/cart';
+import { CartModalComponent } from '../cart-modal/cart-modal.component';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  providers: [CartModalComponent],
+   providers: [CartModalComponent],
 })
 export class HeaderComponent implements OnInit {
   constructor(
@@ -19,6 +18,9 @@ export class HeaderComponent implements OnInit {
 
   public totalItem : number = 0;
   public searchTerm !: string;
+
+  // TODO: change this to a Cart object
+  public name = 'Angular ' + VERSION.major;
 
   ngOnInit(): void {
     this.cartService.getProducts()
@@ -33,13 +35,13 @@ export class HeaderComponent implements OnInit {
     this.cartService.search.next(this.searchTerm);
   }
 
-  openCartModal() {
-    this.cartModalComponent.loadModal();
+  updateCartModal(): void {
+    // TODO: This is where the cart list gets items pushed 
+    // or items are updated
+    this.name += Math.floor(Math.random() * 10);
   }
 
-  loadCartModal() : Cart {
-    let cart = new Cart();
-    cart.name = 'Angular ' + VERSION.major
-    return cart;
+  openCartModal() {
+    this.ngxSmartModalService.getModal('cart').open();
   }
 }
