@@ -26,7 +26,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     NgxSmartModalModule.forRoot(),
-    // NgxSmartModalModule.forChild()
   ],
   providers: [provideHttpClient(), NgxSmartModalService],
   bootstrap: [AppComponent]

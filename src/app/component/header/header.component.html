@@ -3,13 +3,9 @@
   <input class="form-control mr-sm-2" style="width: 100%;" type="text" placeholder="Search">
 </form> -->
 
-<ngx-smart-modal #myModal identifier="myModal">
-  <h1>Hello, I'm back on track!</h1>
-  <p>I'm a modal containing simple content, but what you see below is a component!</p>
-  <hr>
-  <CartModal name="{{ name }}"></CartModal>
-
-  <button (click)="myModal.close()">Close</button>
+<ngx-smart-modal #cart [identifier]="'cart'">
+  <cart-modal></cart-modal>
+  <button (click)="cart.close()">Close</button>
 </ngx-smart-modal>
 
 <header>
@@ -22,7 +18,7 @@
           </div>
           <input type="text" class="form-control header-input" [(ngModel)]="searchTerm" name="searchTerm" (keyup)="search($event)"
             placeholder="Search Products">
-            <button (click)="myModal.open()">Cart Modal</button>
+            <button (click)="this.openCartModal()">Cart Modal</button>
           <!-- TODO: Add user login routerLink here -->
         </form>
       </div>

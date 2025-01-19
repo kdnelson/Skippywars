@@ -1,10 +1,32 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, VERSION } from '@angular/core';
+import { NgxSmartModalService } from 'ngx-smart-modal';
+import { Cart } from '../../models/cart';
 
 @Component({
-  selector: 'CartModal',
-  template: `<h2>Hello {{name}}!</h2><p>I'm a component showing dynamic data!</p>`,
-  styles: [],
+  selector: 'cart-modal',
+  templateUrl: './cart-modal.component.html',
+  styleUrls: ['./cart-modal.component.scss'],
 })
 export class CartModalComponent {
-  @Input() name: string | undefined;
+  constructor(
+    public ngxSmartModalService: NgxSmartModalService
+  ) {}
+
+  @Input() cartData: Cart = {};
+
+  ngOnInit() {
+    this.cartData = this.loadCartModal();
+  }
+
+  loadModal() {
+    console.log(this.cartData);
+    this.ngxSmartModalService.getModal('cart').open();
+  }
+
+  // TODO: Load from service
+  loadCartModal() : Cart {
+    let cart = new Cart();
+    cart.name = 'Angular ' + VERSION.major
+    return cart;
+  }
 }
