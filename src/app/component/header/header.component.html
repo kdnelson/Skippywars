@@ -3,15 +3,21 @@
   <input class="form-control mr-sm-2" style="width: 100%;" type="text" placeholder="Search">
 </form> -->
 
-<ngx-smart-modal #cart [identifier]="'cart'">
-  <cart-modal name="{{ name }}"></cart-modal>
+<ngx-smart-modal 
+  #cart [identifier]="'cart'"
+  target=".cart-modal-anchor"
+  [closable]="false" 
+  [dismissable]="true">
+  <cart-modal name="{{ name }}" mediaSize="{{ mediaSize }}"></cart-modal>
   <button (click)="this.updateCartModal()">Append number</button>
 </ngx-smart-modal>
+
+<div class="cart-modal-anchor"></div>
 
 <header>
   <nav class="navbar navbar-dark">
     <div class="container">
-      <div class="row">
+      <div class="row"> 
         <form class="d-flex input-group w-auto">
           <div class="input-group-prepend" routerLink="products">
             <div class="header-title mt-2 header-background" href="#">Skippy Wars</div>

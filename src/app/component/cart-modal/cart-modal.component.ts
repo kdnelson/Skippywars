@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class CartModalComponent  {
   @Input() name: string | undefined;
+  @Input() mediaSize: string | undefined;
 }

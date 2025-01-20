@@ -122,5 +122,6 @@ TODO:
 
 Adjust search bar based on screen size
 Adjust/modify background image based on screen size
-Pop a simple modal on cart image
+Size and position cart modal based on media size
+Push cart modal into its own component?  Maybe?
 Build cart modal and set focus to last cart entry

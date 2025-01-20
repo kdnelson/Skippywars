@@ -1,4 +1,4 @@
-import { Component, VERSION, OnInit, Input } from '@angular/core';
+import { Component, VERSION, OnInit, HostListener, Input } from '@angular/core';
 import { CartService } from '../../service/cart.service';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { CartModalComponent } from '../cart-modal/cart-modal.component';
@@ -18,11 +18,18 @@ export class HeaderComponent implements OnInit {
 
   public totalItem : number = 0;
   public searchTerm !: string;
-
   // TODO: change this to a Cart object
   public name = 'Angular ' + VERSION.major;
+  public mediaSize = "";
+
+  @HostListener('window:resize', ['$event'])
+
+  onResize() {
+    this.getMediaSize();
+  }
 
   ngOnInit(): void {
+    this.getMediaSize();
     this.cartService.getProducts()
     .subscribe(res=>{
       this.totalItem = res.length;
@@ -43,5 +50,16 @@ export class HeaderComponent implements OnInit {
 
   openCartModal() {
     this.ngxSmartModalService.getModal('cart').open();
+  }
+
+  getMediaSize() {
+    // TODO: push strings phone, tablet, desktop to a constants file
+    if(window.innerWidth < 321) {
+      this.mediaSize = "phone"
+    } else if (window.innerWidth >= 321 && window.innerWidth < 769) {
+      this.mediaSize = "tablet"
+    } else if (window.innerWidth >= 769) {
+      this.mediaSize = "desktop"
+    }
   }
 }

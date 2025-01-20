@@ -1,4 +1,17 @@
-<div classNmae="Container">
-  <h2>Version {{ name }} !</h2>
-  <p>Modal dynamic data!</p>
+<div>
+  <div *ngIf="mediaSize === 'phone'" class="cart-modal-phone">
+    <h2>Version {{ name }}</h2>
+    <h2>mediaSize {{ mediaSize }}</h2>
+    <p>Modal dynamic data!</p>
+  </div>
+  <div *ngIf="mediaSize === 'tablet'" class="cart-modal-tablet">
+    <h2>Version {{ name }}</h2>
+    <h2>mediaSize {{ mediaSize }}</h2>
+    <p>Modal dynamic data!</p>
+  </div>
+  <div *ngIf="mediaSize === 'desktop'" class="cart-modal-desktop">
+    <h2>Version {{ name }}</h2>
+    <h2>mediaSize {{ mediaSize }}</h2>
+    <p>Modal dynamic data!</p>
+  </div>
 </div>
