@@ -62,9 +62,8 @@ body.dialog-open {
   position: relative;
   opacity: 1;
   visibility: visible;
-  min-height: 200px;
-  width: 100%;
-  max-width: 520px;
+  height: 500px;
+  max-width: 650px;
   margin: 0 auto;
   pointer-events: none;
   outline: none;
