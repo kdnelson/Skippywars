@@ -1,14 +1,50 @@
-.cart-modal-phone {
-  height: 650px;
-  background-color: blue;
+.cart-header {
+  padding-top: 9px;
+  padding-bottom: 9px;
+  height: 42px;
+  background-color: black;
 }
 
-.cart-modal-tablet {
-  height: 650px;
-  background-color: green;
+.cart-counter-label {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: medium;
+  border-radius: 7px;
+  font-weight: bolder;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.75);
+  background-color: white;
 }
 
-.cart-modal-desktop {
-  height: 650px;
+.cart-list {
+  height: 460px;
   background-color: yellow;
+}
+
+.cart-total {
+  color: black;
+  font-weight: bold;
+  background-color: white;
+}
+
+.cart-txt-phone {
+  font-size: small;
+}
+
+.cart-txt-not-phone {
+  font-size: larger;
+}
+
+.cart-total-left-padding {
+  margin-left: 10px;
+}
+
+.cart-submit {
+  height: 92px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: xx-large;
+  font-weight: bolder;
+  color: white;
+  background-color: green;
 }

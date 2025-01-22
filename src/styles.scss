@@ -5,13 +5,13 @@
 @import "./custom-styles/ngx-smart-modal-custom.scss";
 
 .background {
-  height: 100%;
-  width: 100%;
-  position: absolute;
+  height: 100vh;
   z-index: 2;
-  background-size: cover;
-  background-repeat: no-repeat;
   background-image: url("./assets/images/starwars-shady-bg.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .cart-modal-anchor {

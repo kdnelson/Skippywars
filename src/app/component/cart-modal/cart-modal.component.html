@@ -1,17 +1,75 @@
-<div>
-  <div *ngIf="mediaSize === 'phone'" class="cart-modal-phone">
-    <h2>Version {{ name }}</h2>
-    <h2>mediaSize {{ mediaSize }}</h2>
-    <p>Modal dynamic data!</p>
-  </div>
-  <div *ngIf="mediaSize === 'tablet'" class="cart-modal-tablet">
-    <h2>Version {{ name }}</h2>
-    <h2>mediaSize {{ mediaSize }}</h2>
-    <p>Modal dynamic data!</p>
-  </div>
-  <div *ngIf="mediaSize === 'desktop'" class="cart-modal-desktop">
-    <h2>Version {{ name }}</h2>
-    <h2>mediaSize {{ mediaSize }}</h2>
-    <p>Modal dynamic data!</p>
-  </div>
+
+  <div class="container">
+    <div class="row justify-content-center cart-header">
+      <div class="d-flex justify-content-end ">
+        <div class="cart-counter-label">123</div>
+      </div>
+    </div>
+    <div class="row justify-content-center cart-list">
+    </div>
+    <div class="row cart-total">
+      <div class="d-flex justify-content-end">
+        <div>
+          <div *ngIf="mediaSize === 'phone'" class="cart-txt-phone">
+            Subtotal:
+          </div>
+          <div *ngIf="mediaSize === 'desktop'" class="cart-txt-not-phone">
+            Subtotal:
+          </div>
+        </div>
+        <div class="cart-total-left-padding">
+          <div *ngIf="mediaSize === 'phone'" class="cart-txt-phone">
+            10,023,400.00 cr
+          </div>
+          <div *ngIf="mediaSize === 'desktop'" class="cart-txt-not-phone">
+            10,023,400.00 cr
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end">
+        <div>
+          <div *ngIf="mediaSize === 'phone'" class="cart-txt-phone">
+            Subtotal:
+          </div>
+          <div *ngIf="mediaSize === 'desktop'" class="cart-txt-not-phone">
+            Subtotal:
+          </div>
+        </div>
+        <div div class="cart-total-left-padding">
+          <div *ngIf="mediaSize === 'phone'" class="cart-txt-phone">
+            10,023,400.00 cr
+          </div>
+          <div *ngIf="mediaSize === 'desktop'" class="cart-txt-not-phone">
+            10,023,400.00 cr
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end">
+        <div>
+          <div *ngIf="mediaSize === 'phone'" class="cart-txt-phone">
+            Subtotal:
+          </div>
+          <div *ngIf="mediaSize === 'desktop'" class="cart-txt-not-phone">
+            Subtotal:
+          </div>
+        </div>
+        <div class="cart-total-left-padding">
+          <div *ngIf="mediaSize === 'phone'" class="cart-txt-phone">
+            10,023,400.00 cr
+          </div>
+          <div *ngIf="mediaSize === 'desktop'" class="cart-txt-not-phone">
+            10,023,400.00 cr
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center align-items-center cart-submit">
+      Submit
+    </div>
 </div>
+
+<!-- <div>
+  <h2>Version {{ name }}</h2>
+  <h2>mediaSize {{ mediaSize }}</h2>
+  <p>Modal dynamic data!</p>
+</div> -->
