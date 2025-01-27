@@ -120,8 +120,8 @@ HomeComponent.getMenuItemsPerManufacturer refreshes calling menuItems$ (observab
 
 TODO:
 
+Rebuild header component baseed on mediaSize, simular to ReactJS
 Adjust search bar based on screen size
-Adjust/modify background image based on screen size
 Size and position cart modal based on media size
-Push cart modal into its own component?  Maybe?
-Build cart modal and set focus to last cart entry
+  Adjust subtotal, tax, and total padding bas3ed on mediaSize
+Build cart modal from cartService and set focus to last cart entry

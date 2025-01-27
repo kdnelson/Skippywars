@@ -61,14 +61,16 @@ export class HeaderComponent implements OnInit {
     // TODO: get Cart from CartService and assign to local variables
     let cart = new Cart
     cart.counter = 789
-    cart.subTotal = 12000
-    cart.tax = 345
-    cart.total = 12345
+    this.cartItems = []
+    cart.subTotal = 100
+    cart.tax = 12
+    cart.total = 220
 
-    this.counter = cart.counter.toString()
-    this.subTotal = cart.subTotal.toString()
-    this.tax = cart.tax.toString()
-    this.total = cart.total.toString()
+    this.counter = cart.counter.toString();
+    this.cartItems = cart.cartItems = [{"name": "Kris"}, {"name": "Lilly"}, {"name": "Colin"}];
+    this.subTotal = cart.subTotal.toString();
+    this.tax = cart.tax.toString();
+    this.total = cart.total.toString();
 
     this.ngxSmartModalService.getModal('cart').open();
   }

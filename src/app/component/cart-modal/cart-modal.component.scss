@@ -28,15 +28,21 @@
 }
 
 .cart-txt-phone {
+  text-align: right;
   font-size: small;
 }
 
 .cart-txt-not-phone {
+  text-align: right;
   font-size: larger;
 }
 
-.cart-total-left-padding {
-  margin-left: 10px;
+.cart-total-left-padding-phone {
+  min-width: 45px;
+}
+
+.cart-total-left-padding-not-phone {
+  min-width: 65px;
 }
 
 .cart-submit {
