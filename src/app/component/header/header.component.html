@@ -8,7 +8,14 @@
   target=".cart-modal-anchor"
   [closable]="false" 
   [dismissable]="true">
-  <cart-modal name="{{ name }}" mediaSize="{{ mediaSize }}"></cart-modal>
+  <cart-modal
+    mediaSize="{{ mediaSize }}"
+    counter="{{ counter }}"
+    subTotal="{{ subTotal }}"
+    tax="{{ tax }}"
+    total="{{ total }}"
+  >
+  </cart-modal>
 </ngx-smart-modal>
 
 <div class="cart-modal-anchor"></div>

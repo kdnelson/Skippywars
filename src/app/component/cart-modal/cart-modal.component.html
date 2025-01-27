@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row justify-content-center cart-header">
       <div class="d-flex justify-content-end ">
-        <div class="cart-counter-label">123</div>
+        <div class="cart-counter-label">{{counter}}</div>
       </div>
     </div>
     <div class="row justify-content-center cart-list">
@@ -19,46 +19,46 @@
         </div>
         <div class="cart-total-left-padding">
           <div *ngIf="mediaSize === 'phone'" class="cart-txt-phone">
-            10,023,400.00 cr
+            {{subTotal}} cr
           </div>
           <div *ngIf="mediaSize === 'desktop'" class="cart-txt-not-phone">
-            10,023,400.00 cr
+            {{subTotal}} cr
           </div>
         </div>
       </div>
       <div class="d-flex justify-content-end">
         <div>
           <div *ngIf="mediaSize === 'phone'" class="cart-txt-phone">
-            Subtotal:
+            Tax:
           </div>
           <div *ngIf="mediaSize === 'desktop'" class="cart-txt-not-phone">
-            Subtotal:
+            Tax:
           </div>
         </div>
         <div div class="cart-total-left-padding">
           <div *ngIf="mediaSize === 'phone'" class="cart-txt-phone">
-            10,023,400.00 cr
+            {{tax}} cr
           </div>
           <div *ngIf="mediaSize === 'desktop'" class="cart-txt-not-phone">
-            10,023,400.00 cr
+            {{tax}} cr
           </div>
         </div>
       </div>
       <div class="d-flex justify-content-end">
         <div>
           <div *ngIf="mediaSize === 'phone'" class="cart-txt-phone">
-            Subtotal:
+            Total:
           </div>
           <div *ngIf="mediaSize === 'desktop'" class="cart-txt-not-phone">
-            Subtotal:
+            Total:
           </div>
         </div>
         <div class="cart-total-left-padding">
           <div *ngIf="mediaSize === 'phone'" class="cart-txt-phone">
-            10,023,400.00 cr
+            {{total}} cr
           </div>
           <div *ngIf="mediaSize === 'desktop'" class="cart-txt-not-phone">
-            10,023,400.00 cr
+            {{total}} cr
           </div>
         </div>
       </div>

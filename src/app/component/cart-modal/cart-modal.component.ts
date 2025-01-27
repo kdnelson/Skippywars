@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CartItem } from '../../models/cartItem';
 
 @Component({
   selector: 'cart-modal',
@@ -6,6 +7,10 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./cart-modal.component.scss'],
 })
 export class CartModalComponent  {
-  @Input() name: string | undefined;
   @Input() mediaSize: string | undefined;
+  @Input() counter: string | undefined;
+  // @Input() cartItems: CartItem[] | undefined;
+  @Input() subTotal: string | undefined;
+  @Input() tax: string | undefined;
+  @Input() total: string | undefined;
 }

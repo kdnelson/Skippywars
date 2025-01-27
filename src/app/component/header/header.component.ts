@@ -2,6 +2,8 @@ import { Component, VERSION, OnInit, HostListener, Input } from '@angular/core';
 import { CartService } from '../../service/cart.service';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { CartModalComponent } from '../cart-modal/cart-modal.component';
+import { CartItem } from '../../models/cartItem';
+import { Cart } from '../../models/cart';
 
 @Component({
   selector: 'app-header',
@@ -18,9 +20,16 @@ export class HeaderComponent implements OnInit {
 
   public totalItem : number = 0;
   public searchTerm !: string;
-  // TODO: change this to a Cart object
-  public name = 'Angular ' + VERSION.major;
   public mediaSize = "";
+
+  // TODO: use this somwwhere else, like just under the title SkippyWars
+  //public name = 'Angular ' + VERSION.major;
+
+  public counter = "";
+  public cartItems: CartItem[] = [];
+  public subTotal = "";
+  public tax = "";
+  public total = "";
 
   @HostListener('window:resize', ['$event'])
 
@@ -45,10 +54,22 @@ export class HeaderComponent implements OnInit {
   updateCartModal(): void {
     // TODO: This is where the cart list gets items pushed 
     // or items are updated
-    this.name += Math.floor(Math.random() * 10);
+    //this.name += Math.floor(Math.random() * 10);
   }
 
   openCartModal() {
+    // TODO: get Cart from CartService and assign to local variables
+    let cart = new Cart
+    cart.counter = 789
+    cart.subTotal = 12000
+    cart.tax = 345
+    cart.total = 12345
+
+    this.counter = cart.counter.toString()
+    this.subTotal = cart.subTotal.toString()
+    this.tax = cart.tax.toString()
+    this.total = cart.total.toString()
+
     this.ngxSmartModalService.getModal('cart').open();
   }
 
