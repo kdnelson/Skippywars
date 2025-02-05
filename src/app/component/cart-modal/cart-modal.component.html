@@ -7,7 +7,10 @@
     </div>
     <div class="row justify-content-center cart-list">
       <div *ngFor="let cartItem of cartItems">
-        {{ cartItem?.name }}
+        {{ cartItem?.title }}
+        {{ cartItem?.description }}
+        {{ cartItem?.price }}
+        {{ cartItem?.quantity }}
       </div>
     </div>
     <div class="row cart-total">

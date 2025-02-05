@@ -26,7 +26,8 @@ export class HeaderComponent implements OnInit {
   //public name = 'Angular ' + VERSION.major;
 
   public counter = "";
-  public cartItems: CartItem[] = [];
+  //public cartItems: CartItem[] = [];
+  public cartItems : any = [];
   public subTotal = "";
   public tax = "";
   public total = "";
@@ -41,6 +42,7 @@ export class HeaderComponent implements OnInit {
     this.getMediaSize();
     this.cartService.getProducts()
     .subscribe(res=>{
+      this.cartItems = res;
       this.totalItem = res.length;
     })
   }
@@ -61,13 +63,11 @@ export class HeaderComponent implements OnInit {
     // TODO: get Cart from CartService and assign to local variables
     let cart = new Cart
     cart.counter = 789
-    this.cartItems = []
     cart.subTotal = 100
     cart.tax = 12
     cart.total = 220
 
     this.counter = cart.counter.toString();
-    this.cartItems = cart.cartItems = [{"name": "Kris"}, {"name": "Lilly"}, {"name": "Colin"}];
     this.subTotal = cart.subTotal.toString();
     this.tax = cart.tax.toString();
     this.total = cart.total.toString();

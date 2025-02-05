@@ -9,7 +9,8 @@ import { CartItem } from '../../models/cartItem';
 export class CartModalComponent  {
   @Input() mediaSize: string | undefined;
   @Input() counter: string | undefined;
-  @Input() cartItems: CartItem[] | undefined;
+  // @Input() cartItems: CartItem[] | undefined;
+  @Input() cartItems: any[] | undefined;
   @Input() subTotal: string | undefined;
   @Input() tax: string | undefined;
   @Input() total: string | undefined;
