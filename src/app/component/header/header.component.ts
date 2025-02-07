@@ -77,9 +77,9 @@ export class HeaderComponent implements OnInit {
 
   getMediaSize() {
     // TODO: push strings phone, tablet, desktop to a constants file
-    if(window.innerWidth < 481) {
+    if(window.innerWidth < 551) {
       this.mediaSize = "phone"
-    } else if (window.innerWidth >= 480) {
+    } else if (window.innerWidth >= 550) {
       this.mediaSize = "desktop"
     }
   }
