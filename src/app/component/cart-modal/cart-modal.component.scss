@@ -45,12 +45,16 @@
 
 .cart-item-desktop {
   height: 60px;
-  background-image: linear-gradient(black, rgba(114, 113, 113, 0.8));
+  background-color: rgba(75, 74, 74, 0.5);
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 .cart-item-phone {
   height: 44px;
-  background-image: linear-gradient(black, rgba(114, 113, 113, 0.8));
+  background-color: rgba(75, 74, 74, 0.5);
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 .cart-item-desktop-quantity {
