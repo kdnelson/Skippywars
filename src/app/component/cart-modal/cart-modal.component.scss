@@ -16,14 +16,44 @@
   background-color: white;
 }
 
-.cart-list {
-  height: 460px;
-  background-color: yellow;
+.cart-scroll {
+  height: 487px;
+  font-weight: 500;
+  color: white;
+  background-color: black;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.cart-item-desktop-quantity {
+  text-align: left;
+  min-width: 6%;
+}
+
+.cart-item-desktop {
+  height: 60px;
+}
+
+.cart-item-phone {
+  height: 44px;
+}
+
+.cart-item-phone-quantity {
+  text-align: left;
+  min-width: 8%;
+}
+
+.cart-item-description {
+  max-width: 500px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
 }
 
 .cart-total {
-  color: black;
   font-weight: bold;
+  color: black;
   background-color: white;
 }
 
