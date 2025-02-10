@@ -2,7 +2,7 @@
   padding-top: 9px;
   padding-bottom: 9px;
   height: 42px;
-  background-color: black;
+  background: #ece03a;
 }
 
 .cart-counter-label {
@@ -12,8 +12,8 @@
   border-radius: 7px;
   font-weight: bolder;
   text-align: center;
-  color: rgba(0, 0, 0, 0.75);
-  background-color: white;
+  color: white;
+  background-color: black;
 }
 
 .cart-txt-phone {
@@ -45,10 +45,12 @@
 
 .cart-item-desktop {
   height: 60px;
+  background-image: linear-gradient(black, rgba(114, 113, 113, 0.8));
 }
 
 .cart-item-phone {
   height: 44px;
+  background-image: linear-gradient(black, rgba(114, 113, 113, 0.8));
 }
 
 .cart-item-desktop-quantity {
