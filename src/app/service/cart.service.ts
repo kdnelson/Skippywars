@@ -20,7 +20,17 @@ export class CartService {
     this.productList.next(product);
   }
   addtoCart(product : any){
-    this.cartItemList.push(product);
+    let productFound = false;
+    this.cartItemList.map((a:any, index:any)=>{
+      if(product.id=== a.id){
+        a.quantity++;
+        productFound = true;
+      }
+    })
+
+    if(productFound == false) {
+      this.cartItemList.push(product);
+    }
     this.productList.next(this.cartItemList);
     this.getTotalPrice();
   }

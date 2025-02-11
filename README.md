@@ -121,7 +121,11 @@ HomeComponent.getMenuItemsPerManufacturer refreshes calling menuItems$ (observab
 TODO:
 
 Rebuild header component baseed on mediaSize, simular to ReactJS
+Add a tablet media size to make the spacing better for each cart item
 Adjust search bar based on screen size
-Size and position cart modal based on media size
-  Adjust subtotal, tax, and total padding bas3ed on mediaSize
-Build cart modal from cartService and set focus to last cart entry
+Cast the Cart object to the cart modal in the cart service (the object should not be called product)
+Move all cart content out of product component and into cart component
+Add cart modal click to cart icon
+Detach cart component page and repurpase as order component page
+Set focus to last cart entry
+Add back cart itme click actions
