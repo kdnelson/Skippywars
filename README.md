@@ -123,9 +123,9 @@ TODO:
 Rebuild header component baseed on mediaSize, simular to ReactJS
 Add a tablet media size to make the spacing better for each cart item
 Adjust search bar based on screen size
-Cast the Cart object to the cart modal in the cart service (the object should not be called product)
-Move all cart content out of product component and into cart component
-Add cart modal click to cart icon
-Detach cart component page and repurpase as order component page
+Type the Cart object to the cart modal in the cart service (the object should not be called product)
+Re-purpose as cart comonent as order component
 Set focus to last cart entry
-Add back cart itme click actions
+Add back cart item click actions
+Update cart modal with subtotal, tax, and total from cart service
+Why do the cart itms not stack to the top? Instead, they evenly vertically space

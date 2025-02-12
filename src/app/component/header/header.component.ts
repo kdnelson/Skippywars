@@ -18,14 +18,13 @@ export class HeaderComponent implements OnInit {
     public ngxSmartModalService: NgxSmartModalService
   ) {}
 
-  public totalItem : number = 0;
+  public counter : number = 0;
   public searchTerm !: string;
   public mediaSize = "";
 
   // TODO: use this somwwhere else, like just under the title SkippyWars
   //public name = 'Angular ' + VERSION.major;
 
-  public counter = "";
   //public cartItems: CartItem[] = [];
   public cartItems : any = [];
   public subTotal = "";
@@ -43,13 +42,12 @@ export class HeaderComponent implements OnInit {
     this.cartService.getProducts()
     .subscribe(res=>{
       this.cartItems = res;
-      this.totalItem = res.length;
+      this.counter = this.cartService.getTotalCount();
     })
   }
 
   search(event:any){
     this.searchTerm = (event.target as HTMLInputElement).value;
-    console.log(this.searchTerm);
     this.cartService.search.next(this.searchTerm);
   }
 
@@ -67,7 +65,6 @@ export class HeaderComponent implements OnInit {
     cart.tax = 12
     cart.total = 220
 
-    this.counter = cart.counter.toString();
     this.subTotal = cart.subTotal.toString();
     this.tax = cart.tax.toString();
     this.total = cart.total.toString();
