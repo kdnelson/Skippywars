@@ -31,13 +31,12 @@
           </div>
           <input type="text" class="form-control header-input" [(ngModel)]="searchTerm" name="searchTerm" (keyup)="search($event)"
             placeholder="Search Products">
-            <button (click)="this.openCartModal()">Cart Modal</button>
           <!-- TODO: Add user login routerLink here -->
         </form>
       </div>
       <div class="row">
         <div class="d-flex">
-          <button routerLink="cart" class="btn btn-dark btn-sm header-background">
+          <button (click)="this.openCartModal()" class="btn btn-dark btn-sm header-background">
             <i style="font-size: 25px;" class="fas fa-cart-plus"></i>
             <div style="font-size: 10px;" class="badge bg-danger">{{totalItem}}</div>
           </button>
