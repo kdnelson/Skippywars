@@ -27,20 +27,25 @@
 }
 
 .cart-total-left-padding-phone {
-  min-width: 45px;
+  min-width: 80px;
 }
 
 .cart-total-left-padding-desktop {
-  min-width: 65px;
+  min-width: 115px;
 }
 
 .cart-scroll {
   height: 487px;
   font-weight: 500;
   color: white;
+  padding-right: 10px;
   background-color: rgba(7, 7, 7, 0.9);
   overflow-y: auto;
-  padding-right: 10px;
+}
+
+.cart-list-container {
+  display: inline-block;
+  vertical-align: top;
 }
 
 .cart-item-desktop {

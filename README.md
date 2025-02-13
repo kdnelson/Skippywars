@@ -127,5 +127,3 @@ Type the Cart object to the cart modal in the cart service (the object should no
 Re-purpose as cart comonent as order component
 Set focus to last cart entry
 Add back cart item click actions
-Update cart modal with subtotal, tax, and total from cart service
-Why do the cart itms not stack to the top? Instead, they evenly vertically space

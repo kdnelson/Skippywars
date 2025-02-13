@@ -24,12 +24,20 @@ export class CartService {
     return count;
   };
 
-  getTotalPrice() : number{
+  getSubTotal() : number {
     let subTotal = 0;
     this.cartItemList.map((a:any)=>{
       subTotal += (a.total * a.quantity);
     })
     return subTotal;
+  }
+
+  getTax() : number {
+    return this.getSubTotal() * 0.10;
+  }
+
+  getTotal() : number {
+    return this.getSubTotal() + this.getTax();
   }
 
   // TODO: Whats this?  Rename it?
@@ -51,7 +59,7 @@ export class CartService {
       this.cartItemList.push(product);
     }
     this.productList.next(this.cartItemList);
-    this.getTotalPrice();
+    //this.getTotal();
   }
 
   removeCartItem(product: any){

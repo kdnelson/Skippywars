@@ -7,17 +7,19 @@
     </div>
     <div *ngIf="mediaSize === 'desktop'" class="cart-txt-desktop">
       <div class="row justify-content-center cart-scroll">
-        <div *ngFor="let cartItem of cartItems" class="cart-item-desktop">
-          <div class="row justify-content-start">
-            <div class="d-flex justify-content-start">
-              <div class="cart-item-desktop-quantity">{{ cartItem?.quantity }}</div>
-              <div class="cart-item-description">{{ cartItem?.title }}</div>
+        <div class="cart-list-container">
+          <div *ngFor="let cartItem of cartItems" class="cart-item-desktop">
+            <div class="row justify-content-start">
+              <div class="d-flex justify-content-start">
+                <div class="cart-item-desktop-quantity">{{ cartItem?.quantity }}</div>
+                <div class="cart-item-description">{{ cartItem?.title }}</div>
+              </div>
             </div>
-          </div>
-          <div class="row justify-content-end">
-            <div class="d-flex justify-content-between">
-              <div>Packages (3)</div>
-              <div>{{ cartItem?.price }} cr</div>
+            <div class="row justify-content-end">
+              <div class="d-flex justify-content-between">
+                <div>Packages (3)</div>
+                <div>{{ cartItem?.price }} cr</div>
+              </div>
             </div>
           </div>
         </div>
@@ -48,17 +50,19 @@
     </div>
     <div *ngIf="mediaSize === 'phone'" class="cart-txt-phone">
       <div class="row justify-content-center cart-scroll">
-        <div *ngFor="let cartItem of cartItems" class="cart-item-phone">
-          <div class="row justify-content-start">
-            <div class="d-flex justify-content-start">
-              <div class="cart-item-phone-quantity">{{ cartItem?.quantity }}</div>
-              <div class="cart-item-description">{{ cartItem?.title }}</div>
+        <div class="cart-list-container">
+          <div *ngFor="let cartItem of cartItems" class="cart-item-phone">
+            <div class="row justify-content-start">
+              <div class="d-flex justify-content-start">
+                <div class="cart-item-phone-quantity">{{ cartItem?.quantity }}</div>
+                <div class="cart-item-description">{{ cartItem?.title }}</div>
+              </div>
             </div>
-          </div>
-          <div class="row justify-content-end">
-            <div class="d-flex justify-content-between">
-              <div>Packages (3)</div>
-              <div>{{ cartItem?.price }} cr</div>
+            <div class="row justify-content-end">
+              <div class="d-flex justify-content-between">
+                <div>Packages (3)</div>
+                <div>{{ cartItem?.price }} cr</div>
+              </div>
             </div>
           </div>
         </div>
