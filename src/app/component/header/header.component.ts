@@ -15,9 +15,9 @@ export class HeaderComponent implements OnInit {
   public counter : number = 0;
   public cartItems: CartItem[] = [];
   public searchTerm !: string;
-  public subTotal = "";
-  public tax = "";
-  public total = "";
+  public subTotal: string = "";
+  public tax: string = "";
+  public total: string = "";
   public mediaSize = "";
 
   constructor(
@@ -33,10 +33,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMediaSize();
-    this.cartService.getProducts()
-      .subscribe(res=> {
-        this.counter = this.cartService.getTotalCount();
-      })
+
+    // TODO use to make CartItemList Observable
+    // this.cartService.getProducts()
+    //   .subscribe(res=> {
+    //     this.counter = this.cartService.getTotalCount();
+    //   })
   }
 
   search(event:any) {
@@ -45,16 +47,18 @@ export class HeaderComponent implements OnInit {
   }
 
   openCartModal() {
-    if(this.counter == 0) {
-      return;
-    }
+    // if(this.counter == 0) {
+    //   return;
+    // }
 
     let cart = this.cartService.getCartModel();
-    this.cartItems = this.cartService.getCartItems();
-    this.subTotal = cart.subTotal.toFixed(2).toString();
-    this.tax = cart.tax.toFixed(2).toString();
-    this.total = cart.total.toFixed(2).toString();
-    this.ngxSmartModalService.getModal('cart').open();
+    if(cart !== undefined) {
+      this.cartItems = this.cartService.getCartItems();
+      this.subTotal = cart.subTotal.toFixed(2).toString();
+      this.tax = cart.tax.toFixed(2).toString();
+      this.total = cart.total.toFixed(2).toString();
+      this.ngxSmartModalService.getModal('cart').open();
+    }
   }
 
   getMediaSize() {

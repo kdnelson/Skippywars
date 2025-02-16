@@ -128,3 +128,5 @@ Set focus to last cart entry
 Add back cart item click actions
 Move car modal code behind out of header?
 Too much space on cart modal list
+getTotalCount in cartModal is broken
+Sort out cart.component with cart-mdal.component

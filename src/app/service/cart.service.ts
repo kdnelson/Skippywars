@@ -8,18 +8,18 @@ import { CartItem } from '../models/cartItem';
 })
 export class CartService {
   public cartItemList : CartItem[] = [];
-  // TODO remove?
+  // TODO Use to make CartItemList Observable
   public productList = new BehaviorSubject<any>([]);
   public search = new BehaviorSubject<string>("");
 
   constructor() { }
 
-  // TODO move this!
-  getProducts(){
+  // TODO Use to make CartItemList Observable
+  getProducts() {
     return this.productList.asObservable();
   }
 
-  // TODO: Whats this?  Rename it?  Move it?
+  // TODO:Do I need this to make CartItemList Observable?
   // setProduct(product : any){
   //   this.cartItemList.push(...product);
   //   this.productList.next(product);
@@ -56,16 +56,18 @@ export class CartService {
   addtoCart(product : any){
     let productFound = false;
     this.cartItemList.map((cartItem)=>{
-      if(product.id === cartItem.id){
+      if(product.id === cartItem.id) {
         cartItem.quantity++;
         productFound = true;
       }
     })
 
     if(productFound == false) {
-      this.cartItemList.push(product);
+      this.cartItemList.push(this.getCartItemModel(product));
     }
-    this.productList.next(this.cartItemList);
+
+    // TODO Do I need this?
+    //this.productList.next(this.cartItemList);
   }
 
   removeCartItem(product: any){
@@ -85,15 +87,26 @@ export class CartService {
     this.productList.next(this.cartItemList);
   }
 
-  getCartModel() : any {
-    let cart = new Cart
-    cart.subTotal = this.getSubTotal();
-    cart.tax = this.getTax();
-    cart.total = this.getTotal();
-    return cart;
+  getCartItemModel(product: any) : CartItem {
+    let cartItem = new CartItem (
+      product.id,
+      product.title,
+      product.price,
+      1,
+      false
+    );
+    return cartItem;
   }
 
-  getFormattedPrive(price: number) {
-    return 
+  getCartModel() : Cart {
+    // TODO add quid to id, date to data
+    let cart = new Cart (
+      "",
+      this.getTotalCount(),
+      this.getSubTotal(),
+      this.getTax(),
+      this.getTotal()
+    );
+    return cart;
   }
 }
