@@ -1,34 +1,46 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Cart } from '../models/cart';
+import { CartItem } from '../models/cartItem';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-
-  public cartItemList : any = []
+  public cartItemList : CartItem[] = [];
+  // TODO remove?
   public productList = new BehaviorSubject<any>([]);
   public search = new BehaviorSubject<string>("");
 
   constructor() { }
 
+  // TODO move this!
   getProducts(){
     return this.productList.asObservable();
   }
 
-  getTotalCount(){
+  // TODO: Whats this?  Rename it?  Move it?
+  // setProduct(product : any){
+  //   this.cartItemList.push(...product);
+  //   this.productList.next(product);
+  // }
+
+  getCartItems() {
+    return this.cartItemList;
+  }
+
+  getTotalCount() {
     let count = 0;
-    this.cartItemList.map((a:any)=>{
-      count += a.quantity;
+    this.cartItemList.map((cartItem)=>{
+      count += cartItem.quantity;
     })
     return count;
   };
 
   getSubTotal() : number {
     let subTotal = 0;
-    this.cartItemList.map((a:any)=>{
-      subTotal += (a.total * a.quantity);
+    this.cartItemList.map((cartItem)=>{
+      subTotal += (cartItem.price * cartItem.quantity);
     })
     return subTotal;
   }
@@ -41,17 +53,11 @@ export class CartService {
     return this.getSubTotal() + this.getTax();
   }
 
-  // TODO: Whats this?  Rename it?
-  setProduct(product : any){
-    this.cartItemList.push(...product);
-    this.productList.next(product);
-  }
-
   addtoCart(product : any){
     let productFound = false;
-    this.cartItemList.map((a:any, index:any)=>{
-      if(product.id=== a.id){
-        a.quantity++;
+    this.cartItemList.map((cartItem)=>{
+      if(product.id === cartItem.id){
+        cartItem.quantity++;
         productFound = true;
       }
     })
@@ -60,20 +66,22 @@ export class CartService {
       this.cartItemList.push(product);
     }
     this.productList.next(this.cartItemList);
-    //this.getTotal();
   }
 
   removeCartItem(product: any){
-    this.cartItemList.map((a:any, index:any)=>{
-      if(product.id=== a.id){
-        this.cartItemList.splice(index,1);
+    this.cartItemList.map((cartItem: CartItem, index: any)=>{
+      if(product.id === cartItem.id){
+        this.cartItemList.splice(index, 1);
       }
     })
-    this.productList.next(this.cartItemList);
+
+    // TODO Whats this next stuff?
+    //this.productList.next(this.cartItemList);
   }
 
   removeAllCart(){
     this.cartItemList = []
+    // TODO Whats this next stuff?
     this.productList.next(this.cartItemList);
   }
 
@@ -83,5 +91,9 @@ export class CartService {
     cart.tax = this.getTax();
     cart.total = this.getTotal();
     return cart;
+  }
+
+  getFormattedPrive(price: number) {
+    return 
   }
 }

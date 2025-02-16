@@ -12,35 +12,29 @@ import { Cart } from '../../models/cart';
    providers: [CartModalComponent],
 })
 export class HeaderComponent implements OnInit {
-  constructor(
-    public cartService: CartService,
-    public cartModalComponent: CartModalComponent,
-    public ngxSmartModalService: NgxSmartModalService
-  ) {}
-
   public counter : number = 0;
-   //public cartItems: CartItem[] = [];
-  public cartItems : any = [];
+  public cartItems: CartItem[] = [];
   public searchTerm !: string;
   public subTotal = "";
   public tax = "";
   public total = "";
   public mediaSize = "";
 
+  constructor(
+    public cartService: CartService,
+    public cartModalComponent: CartModalComponent,
+    public ngxSmartModalService: NgxSmartModalService
+  ) {}
+
   // TODO: use this somwwhere else, like just under the title SkippyWars
   //public name = 'Angular ' + VERSION.major;
 
   @HostListener('window:resize', ['$event'])
 
-  onResize() {
-    this.getMediaSize();
-  }
-
   ngOnInit(): void {
     this.getMediaSize();
     this.cartService.getProducts()
       .subscribe(res=> {
-        this.cartItems = res;
         this.counter = this.cartService.getTotalCount();
       })
   }
@@ -51,11 +45,12 @@ export class HeaderComponent implements OnInit {
   }
 
   openCartModal() {
-    if(this.cartItems.length == 0) {
+    if(this.counter == 0) {
       return;
     }
 
     let cart = this.cartService.getCartModel();
+    this.cartItems = this.cartService.getCartItems();
     this.subTotal = cart.subTotal.toFixed(2).toString();
     this.tax = cart.tax.toFixed(2).toString();
     this.total = cart.total.toFixed(2).toString();

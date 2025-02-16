@@ -63,21 +63,32 @@
 }
 
 .cart-item-desktop-quantity {
+  margin-left: 2%;
   text-align: left;
   min-width: 6%;
 }
 
 .cart-item-phone-quantity {
+  margin-left: 2%;
   text-align: left;
   min-width: 10%;
 }
 
 .cart-item-description {
   max-width: 500px;
+  margin-right: 2%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   display: inline-block;
+}
+
+.cart-item-packages {
+  margin-left: 2%;
+}
+
+.cart-item-price {
+  margin-right: 2%;
 }
 
 .cart-total {
