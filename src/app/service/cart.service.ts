@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Cart } from '../models/cart';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  public cartItemList : any =[]
+  public cartItemList : any = []
   public productList = new BehaviorSubject<any>([]);
   public search = new BehaviorSubject<string>("");
 
@@ -74,5 +75,13 @@ export class CartService {
   removeAllCart(){
     this.cartItemList = []
     this.productList.next(this.cartItemList);
+  }
+
+  getCartModel() : any {
+    let cart = new Cart
+    cart.subTotal = this.getSubTotal();
+    cart.tax = this.getTax();
+    cart.total = this.getTotal();
+    return cart;
   }
 }

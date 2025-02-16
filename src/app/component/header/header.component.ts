@@ -19,17 +19,16 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   public counter : number = 0;
+   //public cartItems: CartItem[] = [];
+  public cartItems : any = [];
   public searchTerm !: string;
+  public subTotal = "";
+  public tax = "";
+  public total = "";
   public mediaSize = "";
 
   // TODO: use this somwwhere else, like just under the title SkippyWars
   //public name = 'Angular ' + VERSION.major;
-
-  //public cartItems: CartItem[] = [];
-  public cartItems : any = [];
-  public subTotal = "";
-  public tax = "";
-  public total = "";
 
   @HostListener('window:resize', ['$event'])
 
@@ -40,35 +39,26 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.getMediaSize();
     this.cartService.getProducts()
-    .subscribe(res=>{
-      this.cartItems = res;
-      this.counter = this.cartService.getTotalCount();
-    })
+      .subscribe(res=> {
+        this.cartItems = res;
+        this.counter = this.cartService.getTotalCount();
+      })
   }
 
-  search(event:any){
+  search(event:any) {
     this.searchTerm = (event.target as HTMLInputElement).value;
     this.cartService.search.next(this.searchTerm);
   }
 
-  updateCartModal(): void {
-    // TODO: This is where the cart list gets items pushed 
-    // or items are updated
-    //this.name += Math.floor(Math.random() * 10);
-  }
-
   openCartModal() {
-    // TODO: get Cart from CartService and assign to local variables
-    // TODO: Re-org a bit 
-    let cart = new Cart
-    cart.subTotal = this.cartService.getSubTotal();
-    cart.tax = this.cartService.getTax();
-    cart.total = this.cartService.getTotal();
+    if(this.cartItems.length == 0) {
+      return;
+    }
 
+    let cart = this.cartService.getCartModel();
     this.subTotal = cart.subTotal.toFixed(2).toString();
     this.tax = cart.tax.toFixed(2).toString();
     this.total = cart.total.toFixed(2).toString();
-
     this.ngxSmartModalService.getModal('cart').open();
   }
 

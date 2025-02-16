@@ -127,3 +127,4 @@ Type the Cart object to the cart modal in the cart service (the object should no
 Re-purpose as cart comonent as order component
 Set focus to last cart entry
 Add back cart item click actions
+Move car modal code behind out of header?
