@@ -38,7 +38,7 @@
         <div class="d-flex">
           <button (click)="this.openCartModal()" class="btn btn-dark btn-sm header-background">
             <i style="font-size: 25px;" class="fas fa-cart-plus"></i>
-            <div style="font-size: 10px;" class="badge bg-danger">{{counter}}</div>
+            <div style="font-size: 10px;" class="badge bg-danger">{{ this.cartService.getTotalCount() }}</div>
           </button>
         </div>
       </div>

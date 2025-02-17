@@ -17,9 +17,8 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getProducts()
       .subscribe(response => {
-        //this.productList = response;
         this.filterCategory = response;
-        this.productList.forEach((a:any) => {
+        this.productList?.forEach((a:any) => {
           Object.assign(a,{quantity:1,total:a.price});
         });
       });
@@ -29,6 +28,7 @@ export class ProductsComponent implements OnInit {
     })
   }
 
+  // Type as a Product
   addtocart(item: any){
     this.cartService.addtoCart(item);
   }

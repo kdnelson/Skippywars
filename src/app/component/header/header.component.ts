@@ -33,12 +33,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMediaSize();
-
-    // TODO use to make CartItemList Observable
-    // this.cartService.getProducts()
-    //   .subscribe(res=> {
-    //     this.counter = this.cartService.getTotalCount();
-    //   })
   }
 
   search(event:any) {
@@ -47,11 +41,12 @@ export class HeaderComponent implements OnInit {
   }
 
   openCartModal() {
-    // if(this.counter == 0) {
-    //   return;
-    // }
+    this.counter = this.cartService.getTotalCount();
+    if(this.counter == 0) {
+      return;
+    }
 
-    let cart = this.cartService.getCartModel();
+    let cart: Cart = this.cartService.getCartModel();
     if(cart !== undefined) {
       this.cartItems = this.cartService.getCartItems();
       this.subTotal = cart.subTotal.toFixed(2).toString();

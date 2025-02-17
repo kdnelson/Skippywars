@@ -8,22 +8,11 @@ import { CartItem } from '../models/cartItem';
 })
 export class CartService {
   public cartItemList : CartItem[] = [];
-  // TODO Use to make CartItemList Observable
-  public productList = new BehaviorSubject<any>([]);
+
+  // TODO move to Product service
   public search = new BehaviorSubject<string>("");
 
   constructor() { }
-
-  // TODO Use to make CartItemList Observable
-  getProducts() {
-    return this.productList.asObservable();
-  }
-
-  // TODO:Do I need this to make CartItemList Observable?
-  // setProduct(product : any){
-  //   this.cartItemList.push(...product);
-  //   this.productList.next(product);
-  // }
 
   getCartItems() {
     return this.cartItemList;
@@ -31,7 +20,7 @@ export class CartService {
 
   getTotalCount() {
     let count = 0;
-    this.cartItemList.map((cartItem)=>{
+    this.getCartItems().map((cartItem)=>{
       count += cartItem.quantity;
     })
     return count;
@@ -55,7 +44,7 @@ export class CartService {
 
   addtoCart(product : any){
     let productFound = false;
-    this.cartItemList.map((cartItem)=>{
+    this.cartItemList.map((cartItem)=> {
       if(product.id === cartItem.id) {
         cartItem.quantity++;
         productFound = true;
@@ -66,8 +55,7 @@ export class CartService {
       this.cartItemList.push(this.getCartItemModel(product));
     }
 
-    // TODO Do I need this?
-    //this.productList.next(this.cartItemList);
+    this.getTotalCount();
   }
 
   removeCartItem(product: any){
@@ -81,10 +69,8 @@ export class CartService {
     //this.productList.next(this.cartItemList);
   }
 
-  removeAllCart(){
+  removeAllCartItems(){
     this.cartItemList = []
-    // TODO Whats this next stuff?
-    this.productList.next(this.cartItemList);
   }
 
   getCartItemModel(product: any) : CartItem {
@@ -99,7 +85,7 @@ export class CartService {
   }
 
   getCartModel() : Cart {
-    // TODO add quid to id, date to data
+    // TODO add quid to id
     let cart = new Cart (
       "",
       this.getTotalCount(),
