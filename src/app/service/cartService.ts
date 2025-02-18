@@ -9,9 +9,6 @@ import { CartItem } from '../models/cartItem';
 export class CartService {
   public cartItemList : CartItem[] = [];
 
-  // TODO move to Product service
-  public search = new BehaviorSubject<string>("");
-
   constructor() { }
 
   getCartItems() {

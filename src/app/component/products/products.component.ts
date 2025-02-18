@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../service/productService';
-import { CartService } from '../../service/cart.service';
+import { CartService } from '../../service/cartService';
 
 @Component({
   selector: 'app-products',
@@ -12,7 +12,10 @@ export class ProductsComponent implements OnInit {
   public filterCategory : any
   public searchKey : string = "";
 
-  constructor(private productService : ProductService, private cartService : CartService) { }
+  constructor(
+    private productService : ProductService,
+    private cartService : CartService
+  ) {}
 
   ngOnInit(): void {
     this.productService.getProducts()
@@ -23,7 +26,7 @@ export class ProductsComponent implements OnInit {
         });
       });
 
-    this.cartService.search.subscribe((val:any)=>{
+    this.productService.search.subscribe((val:any)=>{
       this.searchKey = val;
     })
   }

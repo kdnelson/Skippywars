@@ -1,5 +1,6 @@
 import { Component, VERSION, OnInit, HostListener, Input } from '@angular/core';
-import { CartService } from '../../service/cart.service';
+import { CartService } from '../../service/cartService';
+import { ProductService } from '../../service/productService';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { CartModalComponent } from '../cart-modal/cart-modal.component';
 import { CartItem } from '../../models/cartItem';
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     public cartService: CartService,
+    public productService: ProductService,
     public cartModalComponent: CartModalComponent,
     public ngxSmartModalService: NgxSmartModalService
   ) {}
@@ -37,7 +39,7 @@ export class HeaderComponent implements OnInit {
 
   search(event:any) {
     this.searchTerm = (event.target as HTMLInputElement).value;
-    this.cartService.search.next(this.searchTerm);
+    this.productService.search.next(this.searchTerm);
   }
 
   openCartModal() {
