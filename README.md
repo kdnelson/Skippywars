@@ -127,4 +127,3 @@ Re-purpose as cart component as order component
 Set focus to last cart entry
 Add back cart item click actions
 Move car modal code behind out of header?
-Why do I need the cart.component? Sort out cart.component with cart-mdal.component
