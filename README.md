@@ -127,3 +127,5 @@ Re-purpose as cart component as order component
 Set focus to last cart entry
 Add back cart item click actions
 Move car modal code behind out of header?
+Fix cart icon
+Push all ngx-smart-modals to its own file

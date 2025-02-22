@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { Cart } from '../models/cart';
 import { CartItem } from '../models/cartItem';
+import { Product } from '../models/product';
+import { Guid } from 'guid-typescript';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,7 @@ export class CartService {
     return this.getSubTotal() + this.getTax();
   }
 
-  addtoCart(product : any){
+  addtoCart(product : Product){
     let productFound = false;
     this.cartItemList.map((cartItem)=> {
       if(product.id === cartItem.id) {
@@ -70,7 +71,7 @@ export class CartService {
     this.cartItemList = []
   }
 
-  getCartItemModel(product: any) : CartItem {
+  getCartItemModel(product: Product) : CartItem {
     let cartItem = new CartItem (
       product.id,
       product.title,
@@ -82,9 +83,8 @@ export class CartService {
   }
 
   getCartModel() : Cart {
-    // TODO add quid to id
     let cart = new Cart (
-      "",
+      Guid.create().toString(),
       this.getTotalCount(),
       this.getSubTotal(),
       this.getTax(),

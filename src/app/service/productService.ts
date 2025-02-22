@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { map } from 'rxjs/operators';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,9 @@ export class ProductService {
 
   constructor(private http : HttpClient) {}
 
-  // TODO Cast to a Product model
   getProducts() {
-    return this.http.get<any>("https://fakestoreapi.com/products")
-    .pipe(map((res:any)=>{
+    return this.http.get<Product>("https://fakestoreapi.com/products")
+    .pipe(map((res:Product)=>{
       return res;
     }))
   }
