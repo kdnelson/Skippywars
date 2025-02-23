@@ -122,10 +122,6 @@ TODO:
 
 Rebuild header component baseed on mediaSize, simular to ReactJS
 Adjust search bar based on screen size
-Type the Cart object to the cart modal in the cart service (the object should not be called product)
-Re-purpose as cart component as order component
+Re-purpose cart component as order component
 Set focus to last cart entry
 Add back cart item click actions
-Move car modal code behind out of header?
-Fix cart icon
-Push all ngx-smart-modals to its own file

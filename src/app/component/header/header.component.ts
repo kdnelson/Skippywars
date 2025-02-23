@@ -14,6 +14,7 @@ import { MAX_MEDIA_SIZE_PHONE } from '../../../constants';
    providers: [CartModalComponent],
 })
 export class HeaderComponent implements OnInit {
+  public nGVersion = 'Angular ' + VERSION.major;
   public counter : number = 0;
   public cartItems: CartItem[] = [];
   public searchTerm !: string;
@@ -28,9 +29,6 @@ export class HeaderComponent implements OnInit {
     public cartModalComponent: CartModalComponent,
     public ngxSmartModalService: NgxSmartModalService
   ) {}
-
-  // TODO: use this somwwhere else, like just under the title SkippyWars
-  //public name = 'Angular ' + VERSION.major;
 
   @HostListener('window:resize', ['$event'])
 

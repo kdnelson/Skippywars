@@ -28,6 +28,7 @@
         <form class="d-flex input-group w-auto">
           <div class="input-group-prepend" routerLink="products">
             <div class="header-title mt-2 header-background" href="#">Skippy Wars</div>
+            <div class="header-version header-background">{{nGVersion}}</div>
           </div>
           <input type="text" class="form-control header-input" [(ngModel)]="searchTerm" name="searchTerm" (keyup)="search($event)"
             placeholder="Search Products">
@@ -36,9 +37,9 @@
       </div>
       <div class="row">
         <div class="d-flex">
-          <button (click)="this.openCartModal()" class="btn btn-dark btn-sm header-background">
-            <i style="font-size: 25px;" class="fas fa-cart-plus"></i>
-            <div style="font-size: 10px;" class="badge bg-danger">{{ this.cartService.getTotalCount() }}</div>
+          <button (click)="this.openCartModal()" class="btn">
+            <i style="font-size: 27px; color: white" class="fa fa-cart-plus"></i>
+            <div style="font-size: 12px; min-width: 30px;" class="badge bg-danger">{{ this.cartService.getTotalCount() }}</div>
           </button>
         </div>
       </div>

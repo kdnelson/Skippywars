@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CartItem } from '../../models/cartItem';
+import { Cart } from '../../models/cart';
 
 @Component({
   selector: 'cart-modal',

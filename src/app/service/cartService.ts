@@ -41,15 +41,19 @@ export class CartService {
   }
 
   addtoCart(product : Product){
-    let productFound = false;
+    if(this.getTotalCount() >= 99) {
+      return;
+    }
+
+    let cartItemFound = false;
     this.cartItemList.map((cartItem)=> {
       if(product.id === cartItem.id) {
         cartItem.quantity++;
-        productFound = true;
+        cartItemFound = true;
       }
     })
 
-    if(productFound == false) {
+    if(cartItemFound == false) {
       this.cartItemList.push(this.getCartItemModel(product));
     }
 
@@ -62,9 +66,6 @@ export class CartService {
         this.cartItemList.splice(index, 1);
       }
     })
-
-    // TODO Whats this next stuff?
-    //this.productList.next(this.cartItemList);
   }
 
   removeAllCartItems(){
@@ -85,10 +86,11 @@ export class CartService {
   getCartModel() : Cart {
     let cart = new Cart (
       Guid.create().toString(),
+      "",
       this.getTotalCount(),
       this.getSubTotal(),
       this.getTax(),
-      this.getTotal()
+      this.getTotal(),
     );
     return cart;
   }

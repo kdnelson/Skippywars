@@ -10,8 +10,7 @@ import { Product } from '../../models/product';
 })
 export class ProductsComponent implements OnInit {
 
-  // TODO: type productList in entire file
-  public productList : any;
+  public productList : Product[] = [];
   public filterCategory : any
   public searchKey : string = "";
 
@@ -24,8 +23,8 @@ export class ProductsComponent implements OnInit {
     this.productService.getProducts()
       .subscribe(response => {
         this.filterCategory = response;
-        this.productList?.forEach((a:any) => {
-          Object.assign(a,{quantity:1,total:a.price});
+        this.productList?.forEach((product: Product) => {
+          Object.assign(product,{quantity:1,total:product.price});
         });
       });
 
@@ -40,9 +39,11 @@ export class ProductsComponent implements OnInit {
 
   filter(category: string){  
     this.filterCategory = this.productList
-    .filter((a:any)=>{
-      if(a.category == category || category==''){
-        return a;
+    .filter((product: Product)=>{
+      if(product.category == category || category==''){
+        return product;
+      } else {
+        return null;
       }
     })
   }
