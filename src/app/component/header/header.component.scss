@@ -30,6 +30,24 @@
 	box-shadow: none !important;
 }
 
+.phone-searchbar {
+	color: black;
+	background-color: rgb(194, 192, 192);
+	width: 180px;
+	outline: none !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+
+.phone-searchbar:hover,
+.phone-searchbar:active,
+.phone-searchbar:focus {
+	background-color: rgb(194, 192, 192);
+	outline: none !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+
 .header-login-order {
 	color: white;
 	font-weight: 600;
