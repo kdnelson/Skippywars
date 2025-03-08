@@ -5,7 +5,7 @@
         <div class="cart-counter-label">{{ counter }}</div>
       </div>
     </div>
-    <div *ngIf="mediaSize === 'desktop'" class="cart-txt-desktop">
+    <div *ngIf="mediaSize === 'desktop' || mediaSize === 'tablet'" class="cart-txt-desktop">
       <div class="row justify-content-center cart-scroll">
         <div class="cart-list-container">
           <div *ngFor="let cartItem of cartItems" class="cart-item-desktop">
