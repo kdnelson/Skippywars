@@ -1,45 +1,44 @@
+
 .header-title {
+	background-color: transparent;
 	color: #ece03a;
-	background-color: #212529;
 	font-weight: bold;
 	font-size: larger;
-	margin-right: .5rem;
 }
 
 .header-version {
+	background-color: transparent;
 	color: #ece03a;
-	background-color: #212529;
 	font-weight: bold;
 	font-size:x-small;
 }
 
-.form-control {
-	border-radius: 3px;
-	width: 142px;
-}
-
-.header-background {
-	background-color: transparent;
-}
-
-.header-input {
+.desktop-searchbar {
 	color: white;
 	background-color: #545454;
+	width: 300px;
 	outline: none !important;
 	border: none !important;
 	box-shadow: none !important;
 }
-
-.header-input:hover,
-.header-input:active,
-.header-input:focus {
+.desktop-searchbar:hover,
+.desktop-searchbar:active,
+.desktop-searchbar:focus {
 	background-color: #545454;
 	outline: none !important;
 	border: none !important;
 	box-shadow: none !important;
 }
-.btn {
-	outline: none !important;
-	border: none !important;
-	box-shadow: none !important;
+
+.header-login-order {
+	color: white;
+	font-weight: 600;
+	font-size: x-small;
+	margin: 0px;
+	text-decoration: none;
 }
+
+// .form-control {
+// 	border-radius: 3px;
+// 	width: 142px;
+// }

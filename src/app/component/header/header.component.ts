@@ -5,7 +5,10 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { CartModalComponent } from '../cart-modal/cart-modal.component';
 import { CartItem } from '../../models/cartItem';
 import { Cart } from '../../models/cart';
-import { MAX_MEDIA_SIZE_PHONE } from '../../../constants';
+import {
+  MAX_MEDIA_SIZE_DESKTOP,
+  MAX_MEDIA_SIZE_PHONE
+} from '../../../constants';
 
 @Component({
   selector: 'app-header',
@@ -58,10 +61,13 @@ export class HeaderComponent implements OnInit {
   }
 
   getMediaSize() {
-    if(window.innerWidth <= MAX_MEDIA_SIZE_PHONE) {
-      this.mediaSize = "phone"
-    } else if (window.innerWidth > MAX_MEDIA_SIZE_PHONE) {
+    if(window.innerWidth >= MAX_MEDIA_SIZE_DESKTOP) {
       this.mediaSize = "desktop"
+    } else if (window.innerWidth < MAX_MEDIA_SIZE_DESKTOP &&
+      window.innerWidth > MAX_MEDIA_SIZE_PHONE) {
+      this.mediaSize = "tablet"
+    } else if (window.innerWidth <= MAX_MEDIA_SIZE_PHONE) {
+      this.mediaSize = "phone"
     }
   }
 }

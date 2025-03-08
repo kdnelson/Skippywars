@@ -1,7 +1,3 @@
-<!-- <form class="form-inline waves-light" style="width: 100%;" mdbRippleRadius>
-  <div class="header-title mt-2 header-background" href="#">Skippy Wars</div>
-  <input class="form-control mr-sm-2" style="width: 100%;" type="text" placeholder="Search">
-</form> -->
 
 <ngx-smart-modal 
   #cart [identifier]="'cart'"
@@ -22,27 +18,38 @@
 <div class="cart-modal-anchor"></div>
 
 <header>
-  <nav class="navbar navbar-dark">
-    <div class="container">
-      <div class="row"> 
-        <form class="d-flex input-group w-auto">
-          <div class="input-group-prepend" routerLink="products">
-            <div class="header-title mt-2 header-background" href="#">Skippy Wars</div>
-            <div class="header-version header-background">{{nGVersion}}</div>
-          </div>
-          <input type="text" class="form-control header-input" [(ngModel)]="searchTerm" name="searchTerm" (keyup)="search($event)"
-            placeholder="Search Products">
-          <!-- TODO: Add user login routerLink here -->
-        </form>
+  <div *ngIf="mediaSize === 'desktop'">
+    <div class="d-flex flex-wrap align-items-start">
+      <div class="p-1 ps-2 pe-2">
+        <div class="header-title" href="#">Skippywars</div>
+        <div class="header-version">{{nGVersion}}</div>
       </div>
-      <div class="row">
-        <div class="d-flex">
-          <button (click)="this.openCartModal()" class="btn">
-            <i style="font-size: 27px; color: white" class="fa fa-cart-plus"></i>
-            <div style="font-size: 12px; min-width: 30px;" class="badge bg-danger">{{ this.cartService.getTotalCount() }}</div>
-          </button>
+      <div class="d-flex mt-2">
+        <input type="text" class="form-control desktop-searchbar"
+          [(ngModel)]="searchTerm" name="searchTerm" (keyup)="search($event)"
+          placeholder="Search Products">
+        <div class="col-auto ps-1 pe-2 mt-2">Icon</div>
+      </div>
+      <div class="p-2 pe-5 header-login-order">
+        <div class="row">
+          <div class="row">Hello Guest</div>
+          <div class="row fs-6 fw-bold">Sign In</div>
         </div>
       </div>
+      <div class="p-2 pe-2 header-login-order">
+        <div class="row">
+          <div class="row">Returns</div>
+          <div class="row fs-6 fw-bold">& Orders</div>
+        </div>
+      </div>
+      <div class="mt-2 ms-auto">
+        <button (click)="this.openCartModal()" class="btn">
+          <i style="font-size: 27px; color: white" class="fa fa-cart-plus"></i>
+          <div style="font-size: 12px; min-width: 27px;" class="badge bg-danger">{{ this.cartService.getTotalCount() }}</div>
+        </button>
+      </div>
     </div>
-  </nav>
+  </div>
+  <div *ngIf="mediaSize === 'tablet'">tablet</div>
+  <div *ngIf="mediaSize === 'phone'">phone</div>
 </header>

@@ -125,3 +125,4 @@ Adjust search bar based on screen size
 Re-purpose cart component as order component
 Set focus to last cart entry
 Add back cart item click actions
+Standardize CSS class names
