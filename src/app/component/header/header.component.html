@@ -43,7 +43,7 @@
       </div>
       <div class="mt-2 ms-auto">
         <button (click)="this.openCartModal()" class="btn">
-          <i style="font-size: 27px; color: white" class="fa fa-cart-plus"></i>
+          <i style="font-size: 24px; color: white" class="fa fa-cart-plus"></i>
           <div style="font-size: 12px; min-width: 27px;" class="badge bg-danger">{{ this.cartService.getTotalCount() }}</div>
         </button>
       </div>
@@ -62,7 +62,7 @@
         </div>
         <div class="mt-1 ms-auto">
           <button (click)="this.openCartModal()" class="btn">
-            <i style="font-size: 27px; color: white" class="fa fa-cart-plus"></i>
+            <i style="font-size: 24px; color: white" class="fa fa-cart-plus"></i>
             <div style="font-size: 12px; min-width: 27px;" class="badge bg-danger">{{ this.cartService.getTotalCount() }}</div>
           </button>
         </div>
@@ -95,24 +95,23 @@
             (keyup)="search($event)" placeholder="Search Equipment">
         </div>
       </div>
-      <div class="d-flex flex-wrap align-items-start ps-1">
-        <div class="p-2 pe-5 header-login-order">
+      <div class="d-flex flex-wrap align-items-start phone-header-bottom ps-2">
+        <div class="pe-5 header-login-order">
           <div class="row">
             <div class="row">Hello Guest</div>
             <div class="row fs-6 fw-bold">Sign In</div>
           </div>
         </div>
-        <div class="p-2 pe-2 header-login-order">
+        <div class="pe-1 header-login-order phone-header-returns">
           <div class="row">
             <div class="row">Returns</div>
             <div class="row fs-6 fw-bold">& Orders</div>
           </div>
         </div>
-        <div class="mt-2 ms-auto">
+        <div class="mt-1 ms-auto">
           <button (click)="this.openCartModal()" class="btn">
-            <i style="font-size: 27px; color: white" class="fa fa-cart-plus"></i>
-            <div style="font-size: 12px; min-width: 27px;" class="badge bg-danger">{{ this.cartService.getTotalCount() }}
-            </div>
+            <i style="font-size: 20px; color: white" class="fa fa-cart-plus"></i>
+            <div style="font-size: 11px; min-width: 27px;" class="badge bg-danger">{{ this.cartService.getTotalCount() }}</div>
           </button>
         </div>
       </div>
