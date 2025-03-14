@@ -122,6 +122,7 @@ TODO:
 
 Add some unit tests for Jenkins
 Standardize CSS class names
+Disable cart icon and counter when empty
 Re-purpose cart component as order component
 If last cart item is selected, add extra bottom padding
 Add better lines between cart items
