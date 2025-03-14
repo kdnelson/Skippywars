@@ -3,6 +3,7 @@ import { Cart } from '../models/cart';
 import { CartItem } from '../models/cartItem';
 import { Product } from '../models/product';
 import { Guid } from 'guid-typescript';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,24 @@ import { Guid } from 'guid-typescript';
 export class CartService {
   public cartItemList : CartItem[] = [];
 
-  constructor() { }
+    constructor(
+      public ngxSmartModalService: NgxSmartModalService
+    ) {}
+
+  openCartModal() {
+    this.ngxSmartModalService.getModal('cart').open();
+  }
+
+  closeCartModal() {
+    this.ngxSmartModalService.getModal('cart').close();
+  }
+
+  cancelCartModal() {
+    console.log("cancelCartModal");
+    this.getCartItems().map((cartItem: CartItem) => {
+      cartItem.isSelected = false;
+    });
+  }
 
   getCartItems() {
     return this.cartItemList;
@@ -26,7 +44,7 @@ export class CartService {
 
   getSubTotal() : number {
     let subTotal = 0;
-    this.cartItemList.map((cartItem)=>{
+    this.getCartItems().map((cartItem)=>{
       subTotal += (cartItem.price * cartItem.quantity);
     })
     return subTotal;
@@ -46,7 +64,7 @@ export class CartService {
     }
 
     let cartItemFound = false;
-    this.cartItemList.map((cartItem)=> {
+    this.getCartItems().map((cartItem)=> {
       if(product.id === cartItem.id) {
         cartItem.quantity++;
         cartItemFound = true;
@@ -60,12 +78,27 @@ export class CartService {
     this.getTotalCount();
   }
 
-  removeCartItem(product: any){
-    this.cartItemList.map((cartItem: CartItem, index: any)=>{
-      if(product.id === cartItem.id){
-        this.cartItemList.splice(index, 1);
+  removeCartItem(cartItemId: string) {
+    this.getCartItems().map((cartItem: CartItem, index: number) => {
+      if(cartItemId === cartItem.id) {
+        if(cartItem.quantity > 1) {
+          cartItem.quantity--;
+        } else {
+          this.getCartItems().splice(index, 1);
+        }
       }
     })
+
+    this.getTotalCount();
+  }
+
+  selectedCartItem(cartItemId: string) {
+    this.getCartItems().map((cartItem: CartItem) => {
+      cartItem.isSelected = false;
+      if(cartItemId === cartItem.id) {
+        cartItem.isSelected = !cartItem.isSelected;
+      }
+    });
   }
 
   removeAllCartItems(){

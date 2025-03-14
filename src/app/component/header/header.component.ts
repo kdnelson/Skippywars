@@ -1,7 +1,6 @@
-import { Component, VERSION, OnInit, HostListener, Input } from '@angular/core';
+import { Component, VERSION, OnInit, HostListener } from '@angular/core';
 import { CartService } from '../../service/cartService';
 import { ProductService } from '../../service/productService';
-import { NgxSmartModalService } from 'ngx-smart-modal';
 import { CartModalComponent } from '../cart-modal/cart-modal.component';
 import { CartItem } from '../../models/cartItem';
 import { Cart } from '../../models/cart';
@@ -14,7 +13,7 @@ import {
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-   providers: [CartModalComponent],
+  providers: [CartModalComponent],
 })
 export class HeaderComponent implements OnInit {
   public nGVersion = 'Angular ' + VERSION.major;
@@ -30,7 +29,6 @@ export class HeaderComponent implements OnInit {
     public cartService: CartService,
     public productService: ProductService,
     public cartModalComponent: CartModalComponent,
-    public ngxSmartModalService: NgxSmartModalService
   ) {}
 
   @HostListener('window:resize', ['$event'])
@@ -56,7 +54,8 @@ export class HeaderComponent implements OnInit {
       this.subTotal = cart.subTotal.toFixed(2).toString();
       this.tax = cart.tax.toFixed(2).toString();
       this.total = cart.total.toFixed(2).toString();
-      this.ngxSmartModalService.getModal('cart').open();
+      this.cartService.cancelCartModal();
+      this.cartService.openCartModal();
     }
   }
 

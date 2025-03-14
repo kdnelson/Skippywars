@@ -47,15 +47,22 @@
   vertical-align: top;
 }
 
-.cart-item-desktop {
+.cart-item-desc-desktop {
   height: 60px;
   background-color: black;
   margin-top: 2px;
   margin-bottom: 2px;
 }
 
+.cart-item-btns-desktop {
+  height: 116px;
+  background-color: black;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
 .cart-item-phone {
-  height: 44px;
+  height: 91px;
   background-color: black;
   margin-top: 2px;
   margin-bottom: 2px;
@@ -86,14 +93,108 @@
   margin-left: 2%;
 }
 
-.cart-item-price {
+.cart-item-price-desktop {
   margin-right: 2%;
+}
+
+.cart-item-price-phone {
+  margin-right: 1%;
 }
 
 .cart-total {
   font-weight: bold;
   color: black;
   background-color: white;
+}
+
+.cart-remove-desktop-btn {
+  height: 45px;
+  width: 165px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  padding-top: 8px;
+  text-align: center;
+  background-color: red;
+  color: white;
+  font-weight: bolder;
+  font-size: large;
+}
+
+.cart-cancel-desktop-btn {
+  height: 45px;
+  width: 165px;
+  margin-top: 5px;
+  margin-left: 6px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  padding-top: 8px;
+  text-align: center;
+  background-color: orange;
+  color: white;
+  font-weight: bolder;
+  font-size: large;
+}
+
+.cart-edit-desktop-btn {
+  height: 45px;
+  width: 165px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  padding-top: 8px;
+  text-align: center;
+  background-color: blue;
+  color: white;
+  font-weight: bolder;
+  font-size: large;
+}
+
+.cart-remove-phone-btn {
+  height: 40px;
+  width: 130px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  padding-top: 10px;
+  text-align: center;
+  background-color: red;
+  color: white;
+  font-weight: bolder;
+  font-size: small;
+}
+
+.cart-cancel-phone-btn {
+  height: 40px;
+  width: 130px;
+  margin-top: 5px;
+  margin-left: 6px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  padding-top: 10px;
+  text-align: center;
+  background-color: orange;
+  color: white;
+  font-weight: bolder;
+  font-size: small;
+}
+
+.cart-edit-phone-btn {
+  height: 40px;
+  width: 130px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  padding-top: 10px;
+  text-align: center;
+  background-color: blue;
+  color: white;
+  font-weight: bolder;
+  font-size: small;
 }
 
 .cart-submit {

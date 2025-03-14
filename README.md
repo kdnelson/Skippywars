@@ -120,9 +120,11 @@ HomeComponent.getMenuItemsPerManufacturer refreshes calling menuItems$ (observab
 
 TODO:
 
-Rebuild header component baseed on mediaSize, simular to ReactJS
-Adjust search bar based on screen size
-Re-purpose cart component as order component
-Set focus to last cart entry
-Add back cart item click actions
+Add some unit tests for Jenkins
 Standardize CSS class names
+Re-purpose cart component as order component
+If last cart item is selected, add extra bottom padding
+Add better lines between cart items
+Fix cancel cart item
+Add edit button to close cart item modal and open cart edit modal
+Add checkout page from cart submit
