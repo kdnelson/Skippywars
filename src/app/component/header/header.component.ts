@@ -51,6 +51,7 @@ export class HeaderComponent implements OnInit {
     let cart: Cart = this.cartService.getCartModel();
     if(cart !== undefined) {
       this.cartItems = this.cartService.getCartItems();
+      console.log(this.cartItems, "cartItems");
       this.subTotal = cart.subTotal.toFixed(2).toString();
       this.tax = cart.tax.toFixed(2).toString();
       this.total = cart.total.toFixed(2).toString();

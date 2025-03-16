@@ -10,6 +10,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 })
 export class CartModalComponent  {
   @Input() mediaSize: string | undefined;
+  @Input() isShowCart: boolean | undefined;
   @Input() counter: string | undefined;
   @Input() cartItems: CartItem[] | undefined;
   @Input() isSelected: boolean | undefined;
@@ -20,15 +21,24 @@ export class CartModalComponent  {
   constructor(
     public cartService: CartService,
     public ngxSmartModalService: NgxSmartModalService
-  ) {}
+  ) {
+    this.isShowCart = true;
+  }
 
   removeCartItem(cartItemId: string) {
     this.cartService.removeCartItem(cartItemId);
     this.updateCartModal();
   }
 
-  cancelCartItem() {
-    this.cartService.cancelCartModal();
+  cancelCartItem(cartItemId: string) {
+    this.cartItems?.map((item) => { 
+      if(item.id === cartItemId)
+      {
+        item.isSelected = false;
+      }
+    });
+    this.isShowCart = false;
+    setTimeout(() => this.isShowCart = true);
   }
 
   selectedCartItem(cartItemId: string) {

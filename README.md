@@ -125,7 +125,6 @@ Standardize CSS class names
 Disable cart icon and counter when empty
 Re-purpose cart component as order component
 If last cart item is selected, add extra bottom padding
-Add better lines between cart items
-Fix cancel cart item
+Add tooltip to suggest clicking on a cart item
 Add edit button to close cart item modal and open cart edit modal
 Add checkout page from cart submit

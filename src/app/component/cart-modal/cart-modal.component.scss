@@ -16,24 +16,6 @@
   background-color: black;
 }
 
-.cart-txt-phone {
-  text-align: right;
-  font-size: small;
-}
-
-.cart-txt-desktop {
-  text-align: right;
-  font-size: larger;
-}
-
-.cart-total-left-padding-phone {
-  min-width: 80px;
-}
-
-.cart-total-left-padding-desktop {
-  min-width: 115px;
-}
-
 .cart-scroll {
   height: 487px;
   font-weight: 500;
@@ -47,37 +29,40 @@
   vertical-align: top;
 }
 
-.cart-item-desc-desktop {
-  height: 60px;
+.cart-item-not-selected-card {
   background-color: black;
-  margin-top: 2px;
-  margin-bottom: 2px;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
-.cart-item-btns-desktop {
-  height: 116px;
-  background-color: black;
-  margin-top: 2px;
-  margin-bottom: 2px;
+.cart-item-selected-card {
+  background-color:rgba(42, 42, 42, 0.9);
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
-.cart-item-phone {
-  height: 91px;
-  background-color: black;
-  margin-top: 2px;
-  margin-bottom: 2px;
+.cart-txt-desktop {
+  text-align: right;
+  font-size: larger;
 }
 
-.cart-item-desktop-quantity {
+.cart-txt-phone {
+  text-align: right;
+  font-size: small;
+}
+
+.cart-total-left-padding-desktop {
+  min-width: 115px;
+}
+
+.cart-total-left-padding-phone {
+  min-width: 80px;
+}
+
+.cart-item-quantity {
   margin-left: 2%;
   text-align: left;
   min-width: 6%;
-}
-
-.cart-item-phone-quantity {
-  margin-left: 2%;
-  text-align: left;
-  min-width: 10%;
 }
 
 .cart-item-description {
@@ -89,22 +74,18 @@
   display: inline-block;
 }
 
-.cart-item-packages {
-  margin-left: 2%;
-}
-
-.cart-item-price-desktop {
+.cart-item-price {
   margin-right: 2%;
 }
 
-.cart-item-price-phone {
-  margin-right: 1%;
+.cart-item-phone {
+  height: 91px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
-.cart-total {
-  font-weight: bold;
-  color: black;
-  background-color: white;
+.cart-item-packages {
+  margin-left: 2%;
 }
 
 .cart-remove-desktop-btn {
@@ -195,6 +176,12 @@
   color: white;
   font-weight: bolder;
   font-size: small;
+}
+
+.cart-total {
+  font-weight: bold;
+  color: black;
+  background-color: white;
 }
 
 .cart-submit {

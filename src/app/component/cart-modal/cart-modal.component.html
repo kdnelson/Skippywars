@@ -7,31 +7,31 @@
     </div>
     <div *ngIf="mediaSize === 'desktop' || mediaSize === 'tablet'" class="cart-txt-desktop">
       <div class="row justify-content-center cart-scroll">
-        <div class="cart-list-container">
+        <div *ngIf="isShowCart" class="cart-list-container">
           <div *ngFor="let cartItem of cartItems">
             <div (click)="this.selectedCartItem(cartItem.id)" role="button">
-              <div *ngIf="cartItem.isSelected === false" class="cart-item-desc-desktop">
+              <div *ngIf="cartItem.isSelected === false" class="cart-item-not-selected-card">
                 <div class="d-flex justify-content-start">
-                  <div class="cart-item-desktop-quantity">{{ cartItem?.quantity }}</div>
+                  <div class="cart-item-quantity">{{ cartItem?.quantity }}</div>
                   <div class="cart-item-description">{{ cartItem?.title }}</div>
                 </div>
                 <div class="d-flex justify-content-between">
                   <div class="cart-item-packages">Packages (3)</div>
-                  <div class="cart-item-price-desktop">{{ cartItem?.price?.toFixed(2) }} cr</div>
+                  <div class="cart-item-price">{{ cartItem?.price?.toFixed(2) }} cr</div>
                 </div>
               </div>
-              <div *ngIf="cartItem.isSelected === true" class="cart-item-btns-desktop">
+              <div *ngIf="cartItem.isSelected === true" class="cart-item-selected-card">
                 <div class="d-flex justify-content-start">
-                  <div class="cart-item-desktop-quantity">{{ cartItem?.quantity }}</div>
+                  <div class="cart-item-quantity">{{ cartItem?.quantity }}</div>
                   <div class="cart-item-description">{{ cartItem?.title }}</div>
                 </div>
                 <div class="d-flex justify-content-between">
                   <div class="cart-item-packages">Packages (3)</div>
-                  <div class="cart-item-price-desktop">{{ cartItem?.price?.toFixed(2) }} cr</div>
+                  <div class="cart-item-price">{{ cartItem?.price?.toFixed(2) }} cr</div>
                 </div>
                 <div class="ps-1 pe-2 d-flex justify-content-between">
                   <div class="cart-remove-desktop-btn" (click)="this.removeCartItem(cartItem.id)" role="button">Remove</div>
-                  <div class="cart-cancel-desktop-btn" (click)="this.cancelCartItem()" role="button">Cancel</div>
+                  <div class="cart-cancel-desktop-btn" (click)="this.cancelCartItem(cartItem.id)" role="button">Cancel</div>
                   <div class="cart-edit-desktop-btn" role="button">Edit</div>
                 </div>
               </div>
@@ -65,31 +65,31 @@
     </div>
     <div *ngIf="mediaSize === 'phone'" class="cart-txt-phone">
       <div class="row justify-content-center cart-scroll">
-        <div class="cart-list-container">
+        <div *ngIf="isShowCart" class="cart-list-container">
           <div *ngFor="let cartItem of cartItems">
             <div (click)="this.selectedCartItem(cartItem.id)" role="button">
-              <div *ngIf="cartItem.isSelected === false" class="cart-item-desc-phone">
+              <div *ngIf="cartItem.isSelected === false" class="cart-item-not-selected-card">
                 <div class="d-flex justify-content-start">
-                  <div class="cart-item-desktop-quantity">{{ cartItem?.quantity }}</div>
+                  <div class="cart-item-quantity">{{ cartItem?.quantity }}</div>
                   <div class="cart-item-description">{{ cartItem?.title }}</div>
                 </div>
                 <div class="d-flex justify-content-between">
                   <div class="cart-item-packages">Packages (3)</div>
-                  <div class="cart-item-price-desktop">{{ cartItem?.price?.toFixed(2) }} cr</div>
+                  <div class="cart-item-price">{{ cartItem?.price?.toFixed(2) }} cr</div>
                 </div>
               </div>
-              <div *ngIf="cartItem.isSelected === true" class="cart-item-btns-phone">
+              <div *ngIf="cartItem.isSelected === true" class="cart-item-selected-card">
                 <div class="d-flex justify-content-start">
-                  <div class="cart-item-desktop-quantity">{{ cartItem?.quantity }}</div>
+                  <div class="cart-item-quantity">{{ cartItem?.quantity }}</div>
                   <div class="cart-item-description">{{ cartItem?.title }}</div>
                 </div>
                 <div class="d-flex justify-content-between">
                   <div class="cart-item-packages">Packages (3)</div>
-                  <div class="cart-item-price-desktop">{{ cartItem?.price?.toFixed(2) }} cr</div>
+                  <div class="cart-item-price">{{ cartItem?.price?.toFixed(2) }} cr</div>
                 </div>
                 <div class="pe-1 d-flex justify-content-between">
                   <div class="cart-remove-phone-btn" (click)="this.removeCartItem(cartItem.id)" role="button">Remove</div>
-                  <div class="cart-cancel-phone-btn" (click)="this.cancelCartItem()" role="button">Cancel</div>
+                  <div class="cart-cancel-phone-btn" (click)="this.cancelCartItem(cartItem.id)" role="button">Cancel</div>
                   <div class="cart-edit-phone-btn" role="button">Edit</div>
                 </div>
               </div>
