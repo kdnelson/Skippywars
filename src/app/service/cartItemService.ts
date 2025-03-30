@@ -1,194 +1,196 @@
-import { Injectable } from "@angular/core";
-import { ObservableStore } from "@codewithdan/observable-store";
-import { of } from "rxjs";
-import { CartItem } from "../models/cartItem";
-import { ErrorMsg } from "../models/errorMsg";
-import { ErrorType } from "../models/errorType";
-import { StoreActions } from "../models/storeActions";
-import { StoreState } from "../models/storeState";
-import { LogService } from "./log.service";
+// TODO: Use and get rid
 
-@Injectable({
-  providedIn: 'root'
-})
-export class CartItemService extends ObservableStore<StoreState> {
-  className: string = "CartItemService";
+// import { Injectable } from "@angular/core";
+// import { ObservableStore } from "@codewithdan/observable-store";
+// import { of } from "rxjs";
+// import { CartItem } from "../models/cartItem";
+// import { ErrorMsg } from "../models/errorMsg";
+// import { ErrorType } from "../models/errorType";
+// import { StoreActions } from "../models/storeActions";
+// import { StoreState } from "../models/storeState";
+// import { LogService } from "./log.service";
 
-  constructor(
-    public errorType: ErrorType,
-    public logService: LogService
-    ) {
-      super({ 
-          trackStateHistory: true, 
-          logStateChanges: true 
-      });
-      this.init();
-  }
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class CartItemService extends ObservableStore<StoreState> {
+//   className: string = "CartItemService";
+
+//   constructor(
+//     public errorType: ErrorType,
+//     public logService: LogService
+//     ) {
+//       super({ 
+//           trackStateHistory: true, 
+//           logStateChanges: true 
+//       });
+//       this.init();
+//   }
  
-  init() {}
+//   init() {}
  
-  get() {   
-    const cartItems = this.getState().cartItems;
-    return of(cartItems);
-  }
+//   get() {   
+//     const cartItems = this.getState().cartItems;
+//     return of(cartItems);
+//   }
   
-  add(cartItem: CartItem) {
-    let methodName: string = 'add';
-    let itemIndex = -1;
+//   add(cartItem: CartItem) {
+//     let methodName: string = 'add';
+//     let itemIndex = -1;
  
-    try {
-      let state = this.getState();
-      if(state.cartItems?.findIndex(cItem => cItem.id == cartItem.id) !== undefined) {
-        itemIndex = state.cartItems?.findIndex(cItem => cItem.id == cartItem.id);
-        cartItem.menuItemOptionsCount = this.getMenuItemOptionsCount(cartItem);
-        if (itemIndex == -1) {
-          cartItem = this.modCartItemName(cartItem);
-          state.cartItems?.push(cartItem);
-          this.setState({ cartItems: state.cartItems }, StoreActions.AddCartItem);
-        } else {
-          if(state.cartItems !== undefined) {
-            state.cartItems[itemIndex] = cartItem;
-            this.setState({ cartItems: state.cartItems }, StoreActions.UpdateCartItem);
-          }
-        }
-      }
-    } catch (errMsg) {
-      let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
-      this.logService.logHandler(errorMsg);
-    } finally {
-      console.log('State History:', this.stateHistory);
-    }
-  }
+//     try {
+//       let state = this.getState();
+//       if(state.cartItems?.findIndex(cItem => cItem.id == cartItem.id) !== undefined) {
+//         itemIndex = state.cartItems?.findIndex(cItem => cItem.id == cartItem.id);
+//         cartItem.menuItemOptionsCount = this.getMenuItemOptionsCount(cartItem);
+//         if (itemIndex == -1) {
+//           cartItem = this.modCartItemName(cartItem);
+//           state.cartItems?.push(cartItem);
+//           this.setState({ cartItems: state.cartItems }, StoreActions.AddCartItem);
+//         } else {
+//           if(state.cartItems !== undefined) {
+//             state.cartItems[itemIndex] = cartItem;
+//             this.setState({ cartItems: state.cartItems }, StoreActions.UpdateCartItem);
+//           }
+//         }
+//       }
+//     } catch (errMsg) {
+//       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
+//       this.logService.logHandler(errorMsg);
+//     } finally {
+//       console.log('State History:', this.stateHistory);
+//     }
+//   }
 
-  remove(cartItemIndex: number) {
-    let methodName: string = 'remove';
+//   remove(cartItemIndex: number) {
+//     let methodName: string = 'remove';
 
-    try {              
-      let state = this.getState();
-      state.cartItems?.splice(cartItemIndex, 1);
-      this.setState({ cartItems: state.cartItems }, StoreActions.RemoveCartItem);
-    } catch (errMsg) {
-      let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
-      this.logService.logHandler(errorMsg);
-    } finally {
-      console.log('State History:', this.stateHistory);
-    }
-  }
+//     try {              
+//       let state = this.getState();
+//       state.cartItems?.splice(cartItemIndex, 1);
+//       this.setState({ cartItems: state.cartItems }, StoreActions.RemoveCartItem);
+//     } catch (errMsg) {
+//       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
+//       this.logService.logHandler(errorMsg);
+//     } finally {
+//       console.log('State History:', this.stateHistory);
+//     }
+//   }
  
-  decrementCartItemCount(cartItem: CartItem) {
-    let methodName: string = 'decrementCartItemCount';
-    let cartItemIndex = 0;
+//   decrementCartItemCount(cartItem: CartItem) {
+//     let methodName: string = 'decrementCartItemCount';
+//     let cartItemIndex = 0;
  
-    try {
-      let state = this.getState();
-      state.cartItems?.forEach((cItem) => {
-        if(cartItem.id === cItem.id){
-          if(cItem.quantity !== undefined){
-            if(cItem.quantity == 1){
-              this.remove(cartItemIndex);
-            } else {
-              cItem.quantity = cItem.quantity - 1;
-              this.setState({ cartItems: state.cartItems }, StoreActions.UpdateCartItem); 
-            }
-          }
-        }
-        cartItemIndex++;
-      })
-    } catch (errMsg) {
-      let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
-      this.logService.logHandler(errorMsg);
-    } finally {
-      console.log('State History:', this.stateHistory);
-    }
-  }
+//     try {
+//       let state = this.getState();
+//       state.cartItems?.forEach((cItem) => {
+//         if(cartItem.id === cItem.id){
+//           if(cItem.quantity !== undefined){
+//             if(cItem.quantity == 1){
+//               this.remove(cartItemIndex);
+//             } else {
+//               cItem.quantity = cItem.quantity - 1;
+//               this.setState({ cartItems: state.cartItems }, StoreActions.UpdateCartItem); 
+//             }
+//           }
+//         }
+//         cartItemIndex++;
+//       })
+//     } catch (errMsg) {
+//       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
+//       this.logService.logHandler(errorMsg);
+//     } finally {
+//       console.log('State History:', this.stateHistory);
+//     }
+//   }
 
-  getCartCount() : number {
-    let methodName: string = 'getCartCount';
-    let cartCounter = 0;
+//   getCartCount() : number {
+//     let methodName: string = 'getCartCount';
+//     let cartCounter = 0;
 
-    try {    
-      let state = this.getState();
-      state.cartItems?.forEach((cartItem) => {
-        if(cartItem.quantity !== undefined) {
-          cartCounter = cartCounter + cartItem.quantity;
-        }
-      })
-    } catch (errMsg) {
-      let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
-      this.logService.logHandler(errorMsg);
-    }
+//     try {    
+//       let state = this.getState();
+//       state.cartItems?.forEach((cartItem) => {
+//         if(cartItem.quantity !== undefined) {
+//           cartCounter = cartCounter + cartItem.quantity;
+//         }
+//       })
+//     } catch (errMsg) {
+//       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
+//       this.logService.logHandler(errorMsg);
+//     }
 
-    return cartCounter;
-  }
+//     return cartCounter;
+//   }
 
-  getCartSubtotal() : number {
-    let methodName: string = 'getCartSubtotal';
-    let cartSubtotal: number = 0;
+//   getCartSubtotal() : number {
+//     let methodName: string = 'getCartSubtotal';
+//     let cartSubtotal: number = 0;
 
-    try {    
-      let state = this.getState();
-      state.cartItems?.forEach((cartItem) => {
-        if (cartItem.totalPrice !== undefined) {
-          cartSubtotal += parseInt(cartItem.totalPrice.toString());
-        }
-      })
-    } catch (errMsg) {
-      let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
-      this.logService.logHandler(errorMsg);
-    }
+//     try {    
+//       let state = this.getState();
+//       state.cartItems?.forEach((cartItem) => {
+//         if (cartItem.totalPrice !== undefined) {
+//           cartSubtotal += parseInt(cartItem.totalPrice.toString());
+//         }
+//       })
+//     } catch (errMsg) {
+//       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
+//       this.logService.logHandler(errorMsg);
+//     }
 
-    return cartSubtotal;
-  }
+//     return cartSubtotal;
+//   }
 
-  getCartTax(cartSubTotal: number) : number {
-    let methodName: string = 'getCartTax';
-    let cartTax: number = 0;
+//   getCartTax(cartSubTotal: number) : number {
+//     let methodName: string = 'getCartTax';
+//     let cartTax: number = 0;
 
-    try {
-      if(cartSubTotal > 0){
-        let cartTaxPercent = cartSubTotal / 10;
-        cartTax = cartTaxPercent
-      }    
-    } catch (errMsg) {
-      let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
-      this.logService.logHandler(errorMsg);
-    }
+//     try {
+//       if(cartSubTotal > 0){
+//         let cartTaxPercent = cartSubTotal / 10;
+//         cartTax = cartTaxPercent
+//       }    
+//     } catch (errMsg) {
+//       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
+//       this.logService.logHandler(errorMsg);
+//     }
 
-    return cartTax;
-  }
+//     return cartTax;
+//   }
 
-  private modCartItemName(cartItem: CartItem) : CartItem {
-    let methodName: string = 'modCartItemName';
+//   private modCartItemName(cartItem: CartItem) : CartItem {
+//     let methodName: string = 'modCartItemName';
 
-    try {  
-      if(cartItem.name !== undefined){
-        if (cartItem.name.length > 23) {
-          cartItem.name = cartItem.name.substring(0, 22) + "...";
-        }
-      } 
-    } catch (errMsg) {
-      let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
-      this.logService.logHandler(errorMsg);
-    }
+//     try {  
+//       if(cartItem.name !== undefined){
+//         if (cartItem.name.length > 23) {
+//           cartItem.name = cartItem.name.substring(0, 22) + "...";
+//         }
+//       } 
+//     } catch (errMsg) {
+//       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
+//       this.logService.logHandler(errorMsg);
+//     }
 
-    return cartItem;
-  }
+//     return cartItem;
+//   }
 
-  private getMenuItemOptionsCount(cartItem: CartItem) : number {
-    let methodName: string = 'getMenuItemOptionsCount';
-    let menuItemOptionsCount: number = 0;
+//   private getMenuItemOptionsCount(cartItem: CartItem) : number {
+//     let methodName: string = 'getMenuItemOptionsCount';
+//     let menuItemOptionsCount: number = 0;
 
-    try {
-      cartItem.menuItemOptions?.forEach(miOption => {
-        if(miOption.isSelected){
-          menuItemOptionsCount++;
-        }
-      });
-    } catch (errMsg) {
-      let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
-      this.logService.logHandler(errorMsg);
-    }
+//     try {
+//       cartItem.menuItemOptions?.forEach(miOption => {
+//         if(miOption.isSelected){
+//           menuItemOptionsCount++;
+//         }
+//       });
+//     } catch (errMsg) {
+//       let errorMsg = new ErrorMsg(this.className, methodName, this.errorType.parseException, errMsg);
+//       this.logService.logHandler(errorMsg);
+//     }
 
-    return menuItemOptionsCount;
-  }
-}
+//     return menuItemOptionsCount;
+//   }
+// }

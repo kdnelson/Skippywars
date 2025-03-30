@@ -120,6 +120,8 @@ HomeComponent.getMenuItemsPerManufacturer refreshes calling menuItems$ (observab
 
 TODO:
 
+Implement logService?
+Adjust the cartItem buttons, they're a little off
 Add some unit tests for Jenkins
 Standardize CSS class names
 Disable cart icon and counter when empty

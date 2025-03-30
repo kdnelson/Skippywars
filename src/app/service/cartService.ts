@@ -16,6 +16,7 @@ export class CartService {
     ) {}
 
   openCartModal() {
+    this.ngxSmartModalService.getModal('editCart').close();
     this.ngxSmartModalService.getModal('cart').open();
   }
 
@@ -23,8 +24,12 @@ export class CartService {
     this.ngxSmartModalService.getModal('cart').close();
   }
 
+  openEditCartModal() {
+    this.ngxSmartModalService.getModal('cart').close();
+    this.ngxSmartModalService.getModal('editCart').open();
+  }
+
   cancelCartModal() {
-    console.log("cancelCartModal");
     this.getCartItems().map((cartItem: CartItem) => {
       cartItem.isSelected = false;
     });

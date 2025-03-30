@@ -41,6 +41,11 @@ export class CartModalComponent  {
     setTimeout(() => this.isShowCart = true);
   }
 
+  editCartItem(cartItemId: string) {
+    console.log(cartItemId, "cartItem to edit");
+    this.cartService.openEditCartModal();
+  }
+
   selectedCartItem(cartItemId: string) {
     this.cartService.selectedCartItem(cartItemId);
   }

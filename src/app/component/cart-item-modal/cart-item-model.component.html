@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row justify-content-center edit-cart-header">
+    <div class="d-flex justify-content-start">
+      <div>Edit Cart Item</div>
+    </div>
+  </div>
+  <div *ngIf="mediaSize === 'desktop' || mediaSize === 'tablet'" class="cart-txt-desktop">
+    Desktop and tablet
+  </div>
+  <div *ngIf="mediaSize === 'phone'" class="cart-txt-phone">
+    Phone
+  </div>
+</div>
