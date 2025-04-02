@@ -1,6 +1,22 @@
-.edit-cart-header {
-  padding-top: 9px;
+.cart-item-header{
+  padding-top: 6px;
   padding-bottom: 9px;
+  padding-left: 10px;
   height: 42px;
+  font-weight: bold;
+  font-size: large;
+  color: black;
   background: #ece03a;
+}
+
+.cart-desktop {
+  height: 660px;
+  color: black;
+  background: lightgrey
+}
+
+.cart-phone {
+  height: 660px;
+  color: black;
+  background: lightgrey
 }

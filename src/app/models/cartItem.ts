@@ -1,13 +1,12 @@
-import { MenuItemOption } from "./menuItemOption";
+import { OptionItem } from "./optionItem";
 
 export class CartItem {
   constructor(
     public id: string,
     public title: string,
     public price: number,
-    // TODO: Use with CartItem editing
-    // public menuItemOptions?: MenuItemOption[],
-    // public menuItemOptionsCount?: number,
+    // TODO: Use with CartItem and add to subtotal
+    // public optionItem?: OptionItem[],
     public quantity: number,
     public isSelected: Boolean
   ) {}

@@ -16,7 +16,7 @@ export class CartService {
     ) {}
 
   openCartModal() {
-    this.ngxSmartModalService.getModal('editCart').close();
+    this.ngxSmartModalService.getModal('cartItem').close();
     this.ngxSmartModalService.getModal('cart').open();
   }
 
@@ -26,7 +26,7 @@ export class CartService {
 
   openEditCartModal() {
     this.ngxSmartModalService.getModal('cart').close();
-    this.ngxSmartModalService.getModal('editCart').open();
+    this.ngxSmartModalService.getModal('cartItem').open();
   }
 
   cancelCartModal() {

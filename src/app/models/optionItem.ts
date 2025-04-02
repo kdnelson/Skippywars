@@ -1,6 +1,4 @@
-import { Guid } from 'guid-typescript';
-
-export class MenuItemOption {
+export class OptionItem {
   constructor(
     public id?: String,
     public name?: string,

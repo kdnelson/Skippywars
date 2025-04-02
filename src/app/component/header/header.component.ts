@@ -4,6 +4,7 @@ import { ProductService } from '../../service/productService';
 import { CartModalComponent } from '../cart-modal/cart-modal.component';
 import { CartItemModalComponent } from '../cart-item-modal/cart-item-modal.component';
 import { CartItem } from '../../models/cartItem';
+import { OptionItem } from '../../models/optionItem';
 import { Cart } from '../../models/cart';
 import {
   MAX_MEDIA_SIZE_DESKTOP,
@@ -25,6 +26,14 @@ export class HeaderComponent implements OnInit {
   public tax: string = "";
   public total: string = "";
   public mediaSize = "";
+  public title = "Some Skippy Title";
+  public optionSubTotal = "123.45";
+  //public optionItems: OptionItem[] = [];
+  public optionItems: OptionItem[] = [
+    {"id": "1", "name": "Cup holder", "cost": "12.34", "isSelected": false}, 
+    {"id": "2", "name": "Arm rest", "cost": "7.34", "isSelected": true}, 
+    {"id": "3", "name": "Feet warmer", "cost": "9.34", "isSelected": false}, 
+  ];
 
   constructor(
     public cartService: CartService,

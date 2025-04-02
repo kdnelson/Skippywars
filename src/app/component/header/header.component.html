@@ -4,9 +4,10 @@
   </cart-modal>
 </ngx-smart-modal>
 
-<ngx-smart-modal #editCart [identifier]="'editCart'" target=".edit-cart-modal-anchor" [closable]="false"
+<ngx-smart-modal #cartItem [identifier]="'cartItem'" target=".edit-cart-modal-anchor" [closable]="false"
   [dismissable]="true">
-  <cart-item-modal mediaSize="{{ mediaSize }}">
+  <cart-item-modal mediaSize="{{ mediaSize }}" title="{{ title }}" subTotal="{{ subTotal }}"
+    [optionItems]="optionItems">
   </cart-item-modal>
 </ngx-smart-modal>
 

@@ -120,6 +120,7 @@ HomeComponent.getMenuItemsPerManufacturer refreshes calling menuItems$ (observab
 
 TODO:
 
+Based on CartItem modal, simplify cart header
 Implement logService?
 Adjust the cartItem buttons, they're a little off
 Add some unit tests for Jenkins

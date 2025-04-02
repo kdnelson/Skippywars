@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgxSmartModalService } from 'ngx-smart-modal';
+import { OptionItem } from '../../models/optionItem';
 
 @Component({
   selector: 'cart-item-modal',
@@ -8,7 +9,10 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 })
 export class CartItemModalComponent  {
   @Input() mediaSize: string | undefined;
-
+  @Input() title: string | undefined;
+  @Input() subTotal: string | undefined;
+  @Input() optionItems: OptionItem[] | undefined;
+ 
   constructor(
     public ngxSmartModalService: NgxSmartModalService
   ) {
