@@ -9,6 +9,11 @@
   background: #ece03a;
 }
 
+.cart-item-txt-desktop {
+  text-align: right;
+  font-size: larger;
+}
+
 .cart-item-desktop-image-specs {
   width: 60%;
 }
@@ -19,20 +24,34 @@
 }
 
 .cart-item-desktop-specs {
-  height: 140px;
+  height: 150px;
   background-color: purple;
 }
 
 .cart-item-desktop-options {
   width: 40%;
-  height: 440px;
+  height: 450px;
   background-color: red;
 }
 
-.cart-phone {
-  height: 660px;
-  color: black;
-  background: lightgrey
+.cart-item-txt-phone {
+  text-align: right;
+  font-size: small;
+}
+
+.cart-item-phone-image {
+  height: 300px;
+  background-color: blue;
+}
+
+// .cart-item-phone-specs {
+//   height: 140px;
+//   background-color: purple;
+// }
+
+.cart-item-phone-options {
+  height: 185px;
+  background-color: red;
 }
 
 .cart-item-total {
@@ -48,9 +67,9 @@
 }
 
 .cart-item-submit {
-  height: 92px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  height: 65px;
+  padding-top: 8px;
+  padding-bottom: 10px;
   font-size: xx-large;
   font-weight: bolder;
   color: white;
