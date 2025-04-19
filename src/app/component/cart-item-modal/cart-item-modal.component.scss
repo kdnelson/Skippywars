@@ -9,14 +9,50 @@
   background: #ece03a;
 }
 
-.cart-desktop {
-  height: 660px;
-  color: black;
-  background: lightgrey
+.cart-item-desktop-image-specs {
+  width: 60%;
+}
+
+.cart-item-desktop-image {
+  height: 300px;
+  background-color: blue;
+}
+
+.cart-item-desktop-specs {
+  height: 140px;
+  background-color: purple;
+}
+
+.cart-item-desktop-options {
+  width: 40%;
+  height: 440px;
+  background-color: red;
 }
 
 .cart-phone {
   height: 660px;
   color: black;
   background: lightgrey
+}
+
+.cart-item-total {
+  font-weight: bold;
+  color: black;
+  text-align: right;
+  font-size: larger;
+  background-color: white;
+}
+
+.cart-item-total-left-padding-desktop {
+  min-width: 115px;
+}
+
+.cart-item-submit {
+  height: 92px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: xx-large;
+  font-weight: bolder;
+  color: white;
+  background-color: green;
 }
