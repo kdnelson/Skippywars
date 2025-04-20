@@ -131,4 +131,4 @@ If last cart item is selected, add extra bottom padding
 Add tooltip to suggest clicking on a cart item
 Add checkout page from cart submit
 Add language file for all app text
-Move the cart and cart-item subtotal and total out of the desktop/phone sizing blocks
+Move the cart subtotal and total out of the desktop/phone sizing blocks
