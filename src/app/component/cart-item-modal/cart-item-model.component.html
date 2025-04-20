@@ -4,7 +4,7 @@
   </div>
   <div *ngIf="mediaSize === 'desktop' || mediaSize === 'tablet'" class="cart-item-txt-desktop">
     <div class="row align-items-start">
-      <div class="col-6 cart-item-desktop-image-specs">
+      <div class="col">
         <div class="row cart-item-desktop-image">
           Cart Item Image
         </div>
@@ -12,8 +12,10 @@
           Cart Item Specs
         </div>
       </div>
-      <div class="col-6 cart-item-desktop-options">
-        Cart Item Option List
+      <div class="col">
+        <div class="row cart-item-desktop-options">
+          Cart Item Option List
+        </div>
       </div>
     </div>
     <div class="row cart-item-total">

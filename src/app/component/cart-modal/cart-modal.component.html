@@ -6,7 +6,7 @@
       </div>
     </div>
     <div *ngIf="mediaSize === 'desktop' || mediaSize === 'tablet'" class="cart-txt-desktop">
-      <div class="row justify-content-center cart-scroll">
+      <div class="row justify-content-center cart-scroll-desktop">
         <div *ngIf="isShowCart" class="cart-list-container">
           <div *ngFor="let cartItem of cartItems">
             <div (click)="this.selectedCartItem(cartItem.id)" role="button">
@@ -64,7 +64,7 @@
       </div>
     </div>
     <div *ngIf="mediaSize === 'phone'" class="cart-txt-phone">
-      <div class="row justify-content-center cart-scroll">
+      <div class="row justify-content-center cart-scroll-phone">
         <div *ngIf="isShowCart" class="cart-list-container">
           <div *ngFor="let cartItem of cartItems">
             <div (click)="this.selectedCartItem(cartItem.id)" role="button">

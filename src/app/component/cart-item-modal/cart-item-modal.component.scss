@@ -1,10 +1,10 @@
 .cart-item-header{
-  padding-top: 6px;
+  padding-top: 9px;
   padding-bottom: 9px;
   padding-left: 10px;
   height: 42px;
   font-weight: bold;
-  font-size: large;
+  font-size: medium;
   color: black;
   background: #ece03a;
 }
@@ -12,10 +12,6 @@
 .cart-item-txt-desktop {
   text-align: right;
   font-size: larger;
-}
-
-.cart-item-desktop-image-specs {
-  width: 60%;
 }
 
 .cart-item-desktop-image {
@@ -29,8 +25,7 @@
 }
 
 .cart-item-desktop-options {
-  width: 40%;
-  height: 450px;
+  height: 453px;
   background-color: red;
 }
 
@@ -50,7 +45,7 @@
 // }
 
 .cart-item-phone-options {
-  height: 185px;
+  height: 186px;
   background-color: red;
 }
 

@@ -16,8 +16,16 @@
   background-color: black;
 }
 
-.cart-scroll {
-  height: 440px;
+.cart-scroll-desktop {
+  height: 470px;
+  font-weight: 500;
+  color: white;
+  background-color: rgba(7, 7, 7, 0.9);
+  overflow-y: auto;
+}
+
+.cart-scroll-phone {
+  height: 498px;
   font-weight: 500;
   color: white;
   background-color: rgba(7, 7, 7, 0.9);
