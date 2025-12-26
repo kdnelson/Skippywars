@@ -120,6 +120,10 @@ HomeComponent.getMenuItemsPerManufacturer refreshes calling menuItems$ (observab
 
 TODO:
 
+Fix search bar
+Add space on last list item and remove as needed
+Printout selected "edited" item to load into selected modal
+
 Based on CartItem modal, simplify cart header
 Implement logService?
 Adjust the cartItem buttons, they're a little off
