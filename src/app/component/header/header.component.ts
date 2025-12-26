@@ -2,7 +2,6 @@ import { Component, VERSION, OnInit, HostListener } from '@angular/core';
 import { CartService } from '../../service/cartService';
 import { ProductService } from '../../service/productService';
 import { CartModalComponent } from '../cart-modal/cart-modal.component';
-import { CartItemModalComponent } from '../cart-item-modal/cart-item-modal.component';
 import { CartItem } from '../../models/cartItem';
 import { OptionItem } from '../../models/optionItem';
 import { Cart } from '../../models/cart';
@@ -15,7 +14,7 @@ import {
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  providers: [CartModalComponent, CartItemModalComponent],
+  providers: [CartModalComponent],
 })
 export class HeaderComponent implements OnInit {
   public nGVersion = 'Angular ' + VERSION.major;
@@ -39,7 +38,6 @@ export class HeaderComponent implements OnInit {
     public cartService: CartService,
     public productService: ProductService,
     public cartModalComponent: CartModalComponent,
-    public cartItemModalComponent: CartItemModalComponent,
   ) {}
 
   @HostListener('window:resize', ['$event'])
@@ -62,6 +60,7 @@ export class HeaderComponent implements OnInit {
     let cart: Cart = this.cartService.getCartModel();
     if(cart !== undefined) {
       this.cartItems = this.cartService.getCartItems();
+      console.log(this.cartItems, "cartItems");
       this.subTotal = cart.subTotal.toFixed(2).toString();
       this.tax = cart.tax.toFixed(2).toString();
       this.total = cart.total.toFixed(2).toString();

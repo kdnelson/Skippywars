@@ -16,7 +16,10 @@ export class CartService {
     ) {}
 
   openCartModal() {
+<<<<<<< HEAD
     this.ngxSmartModalService.getModal('cartItem').close();
+=======
+>>>>>>> parent of abe437b (A start on the cart item modal)
     this.ngxSmartModalService.getModal('cart').open();
   }
 
@@ -24,12 +27,16 @@ export class CartService {
     this.ngxSmartModalService.getModal('cart').close();
   }
 
+<<<<<<< HEAD
   openEditCartModal() {
     this.ngxSmartModalService.getModal('cart').close();
     this.ngxSmartModalService.getModal('cartItem').open();
   }
 
+=======
+>>>>>>> parent of abe437b (A start on the cart item modal)
   cancelCartModal() {
+    console.log("cancelCartModal");
     this.getCartItems().map((cartItem: CartItem) => {
       cartItem.isSelected = false;
     });
