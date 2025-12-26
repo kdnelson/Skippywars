@@ -1,21 +1,9 @@
-
-<ngx-smart-modal 
-  #cart [identifier]="'cart'"
-  target=".cart-modal-anchor"
-  [closable]="false" 
-  [dismissable]="true">
-  <cart-modal
-    mediaSize="{{ mediaSize }}"
-    counter="{{ counter }}"
-    [cartItems]="cartItems"
-    subTotal="{{ subTotal }}"
-    tax="{{ tax }}"
-    total="{{ total }}"
-  >
+<ngx-smart-modal #cart [identifier]="'cart'" target=".cart-modal-anchor" [closable]="false" [dismissable]="true">
+  <cart-modal mediaSize="{{ mediaSize }}" counter="{{ counter }}" [cartItems]="cartItems" subTotal="{{ subTotal }}"
+    tax="{{ tax }}" total="{{ total }}">
   </cart-modal>
 </ngx-smart-modal>
 
-<<<<<<< HEAD
 <ngx-smart-modal #cartItem [identifier]="'cartItem'" target=".edit-cart-modal-anchor" [closable]="false"
   [dismissable]="true">
   <cart-item-modal mediaSize="{{ mediaSize }}" title="{{ title }}" subTotal="{{ subTotal }}"
@@ -23,9 +11,8 @@
   </cart-item-modal>
 </ngx-smart-modal>
 
-=======
->>>>>>> parent of abe437b (A start on the cart item modal)
 <div class="cart-modal-anchor"></div>
+<div class="edit-cart-modal-anchor"></div>
 
 <header>
   <div *ngIf="mediaSize === 'desktop'">

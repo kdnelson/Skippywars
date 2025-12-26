@@ -120,7 +120,6 @@ HomeComponent.getMenuItemsPerManufacturer refreshes calling menuItems$ (observab
 
 TODO:
 
-<<<<<<< HEAD
 Fix search bar
 Add space on last list item and remove as needed
 Printout selected "edited" item to load into selected modal
@@ -128,8 +127,6 @@ Printout selected "edited" item to load into selected modal
 Based on CartItem modal, simplify cart header
 Implement logService?
 Adjust the cartItem buttons, they're a little off
-=======
->>>>>>> parent of abe437b (A start on the cart item modal)
 Add some unit tests for Jenkins
 Standardize CSS class names
 Disable cart icon and counter when empty
